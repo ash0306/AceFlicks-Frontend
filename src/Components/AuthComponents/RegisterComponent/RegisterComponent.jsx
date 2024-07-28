@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useFormValidation from "../../../utilities/useFormValidation";
 
-function Register() {
+function RegisterComponent() {
   useFormValidation();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -158,4 +158,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterComponent;
