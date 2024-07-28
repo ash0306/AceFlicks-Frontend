@@ -1,26 +1,78 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { ToastContainer, Toast } from 'react-bootstrap';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useFormValidation from "../../utilities/useFormValidation";
 import '../../App.css';
+import axiosInstance from "../../utilities/axiosConfig";
 
 function RegisterComponent() {
   useFormValidation();
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState("");
   const [validated, setValidated] = useState(false);
+  const [otpValidated, setOtpValidated] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastVariant, setToastVariant] = useState("bg-success");
+  const [showToast, setShowToast] = useState(false);
+  const [isOTPDIVVisible, setIsOTPDIVVisible] = useState(false);
+  const [userId, setUserId] = useState(null);
+
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
+    else{
+      axiosInstance.post('/auth/register',{
+        name: name,
+        email: email,
+        password: password,
+        phone: phone
+      })
+      .then( response => {
+        if(response.status === 200) {
+          setUserId(response.data.id);
+          newToast("bg-success", "Registration successful!Please verify your email to proceed");
+          setIsOTPDIVVisible(true);
+        }
+      })
+      .catch(error => {
+        newToast("bg-danger", "Registration failed. Please try again.");
+      });
+    }
     setValidated(true);
+  };
+
+  const handleVerification = (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    else{
+      axiosInstance.post(`/auth/verify/verifyCode/${otp}?userId=${userId}`)
+      .then( response => {
+        console.log(response);
+        if(response.status === 200) {
+          newToast("bg-success", "Verification successful!Redirecting...");
+        }
+      })
+      .catch(error => {
+        newToast("bg-danger", "Verification failed. Error: " + error.message);
+      });
+    }
+    setOtpValidated(true);
   };
 
   const togglePasswordVisibility = () => {
@@ -33,6 +85,12 @@ function RegisterComponent() {
       passwordInput.type = "password";
       passwordIcon.className = "bi bi-eye-slash";
     }
+  };
+
+  const newToast = (variant, message) => {
+    setToastVariant(variant);
+    setToastMessage(message);
+    setShowToast(true);
   };
 
   return (
@@ -135,8 +193,6 @@ function RegisterComponent() {
                     Register
                   </button>
                 </div>
-                <div className="row m-3 text-center d-none">
-                </div>
                 <div className="row m-3 text-center align-center">
                   <p className="m-0">Already Registered? 
                     <br></br>
@@ -146,15 +202,31 @@ function RegisterComponent() {
                   </p>
                 </div>
               </form>
+              <div className={`row m-3 ${isOTPDIVVisible ? '' : 'd-none'}`}>
+                  <div className="row">
+                    <h5>OTP Verification</h5>
+                    <form className="container needs-validation" noValidate validated={otpValidated.toString()} onSubmit={handleVerification}>
+                      <label htmlFor="otp" className="form-label">OTP:</label>
+                      <input type="text" className="form-control" id="otp" placeholder="Enter the otp" required value={otp} onChange={(e) => setOtp(e.target.value)}/>
+                      <div className="row m-3 d-flex justify-content-center" id="register-btn">
+                        <button type="submit" className="btn btn-dark w-50 fs-5"> Verify </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div>
-
-    </div>
+    <ToastContainer position="top-end" className="p-3">
+      <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+        <Toast.Header className={toastVariant}>
+          <strong className="me-auto">Notification</strong>
+        </Toast.Header>
+        <Toast.Body>{toastMessage}</Toast.Body>
+      </Toast>
+    </ToastContainer>
     </div>
   );
 }
