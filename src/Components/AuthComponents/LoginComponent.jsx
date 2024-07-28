@@ -3,7 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import useFormValidation from "../../../utilities/useFormValidation";
+import useFormValidation from "../../utilities/useFormValidation";
+import '../../App.css';
 
 function LoginComponent() {
     useFormValidation();
@@ -32,11 +33,11 @@ function LoginComponent() {
         }
     };
   return (
-    <>
-        <div className="container p-3" id="div-content">
+    <div className='main-container'>
+        <div className="container p-3 align-middle" id="div-content">
             <div className="row justify-content-center">
-                <div className="col-12 col-md-6 container border rounded shadow-lg">
-                    <div className="row d-flex">
+                <div className="col-12 col-md-6 container border rounded shadow-lg" id='card-form'>
+                    <div className="row d-flex align-items-center">
                         <div className="py-5 col-12">
                             <div>
                                 <h1 className="text-center">LOGIN</h1>
@@ -74,18 +75,16 @@ function LoginComponent() {
                                     <button type="submit" className="btn btn-dark w-50 fs-5">Login</button>
                                 </div>
                                 <div className="row m-3 text-center">
-                                    <p className="m-0">New to AceTickets?
-                                        <Link to="/register" className="text-decoration-none">Register here</Link>
-                                    </p>
+                                    <p className="m-0">New to AceTickets?</p>
+                                    <p><Link to="/register" className="text-decoration-none">Register here</Link></p>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
-    </>
+    </div>
   )
 }
 

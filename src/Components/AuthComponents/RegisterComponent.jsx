@@ -3,7 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import useFormValidation from "../../../utilities/useFormValidation";
+import useFormValidation from "../../utilities/useFormValidation";
+import '../../App.css';
 
 function RegisterComponent() {
   useFormValidation();
@@ -35,10 +36,10 @@ function RegisterComponent() {
   };
 
   return (
-    <>
-    <div className="container p-3" id="div-content">
+    <div className="main-container">
+      <div className="container p-3" id="div-content">
       <div className="row justify-content-center">
-        <div className="col-12 col-md-6 container border rounded shadow-lg">
+        <div className="col-12 col-md-6 container border rounded shadow-lg" id="card-form">
           <div className="row d-flex">
             <div className="py-5 col-12">
               <div>
@@ -154,7 +155,7 @@ function RegisterComponent() {
     <div>
 
     </div>
-    </>
+    </div>
   );
 }
 
