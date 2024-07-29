@@ -5,6 +5,7 @@ import NavBarComponent from '../HeaderComponents/NavBarComponent';
 import AboutComponent from './AboutComponent';
 import NowShowingComponent from './NowShowingComponent';
 import ShowTheatreComponent from './ShowTheatreComponent';
+import ContactComponent from './ContactComponent';
 
 function HomepageComponent() {
   return (
@@ -13,6 +14,8 @@ function HomepageComponent() {
       <AboutComponent/>
       <NowShowingComponent />
       <ShowTheatreComponent />
+      <br/>
+      <ContactComponent/>
     </div>
   );
 }
