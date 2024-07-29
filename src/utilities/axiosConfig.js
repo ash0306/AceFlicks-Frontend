@@ -7,7 +7,6 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  // Add other custom configurations if needed
 });
 
 export default axiosInstance;

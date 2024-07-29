@@ -5,15 +5,17 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Routes, Route } from'react-router-dom'
 import RegisterComponent from './Components/AuthComponents/RegisterComponent'
 import LoginComponent from './Components/AuthComponents/LoginComponent';
-import HomepageComponent from './Components/HomepageComponents/HomepageComponent';
+import HomepageComponent from './Components/DisplayDetailsComponents/HomepageComponent';
+import ShowtimeComponent from './Components/DisplayDetailsComponents/ShowtimeComponent';
 
 function App() {
 
   return (
       <Routes>
+        <Route path='/' element={<HomepageComponent/>}/>
         <Route path='/login' element={<LoginComponent/>}/>
         <Route path='/register' element={<RegisterComponent/>}/>
-        <Route path='/' element={<HomepageComponent/>}/>
+        <Route path='/showtimes' element={<ShowtimeComponent/>}/>
       </Routes>
   )
 }
