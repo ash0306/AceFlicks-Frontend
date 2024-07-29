@@ -4,7 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useFormValidation from "../../utilities/useFormValidation";
-import '../../App.css';
+import '../../styles/styles.css';
 import axiosInstance from '../../utilities/axiosConfig';
 import { jwtDecode } from 'jwt-decode';
 import ToastNotification from '../InfoComponents/ToastNotification';

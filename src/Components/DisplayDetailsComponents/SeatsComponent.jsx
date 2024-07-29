@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import axiosInstance from '../../utilities/axiosConfig';
-import './HomepageStyles.css';
+import '../../styles/styles.css';
 
 function SeatsComponent() {
   const location = useLocation();
@@ -29,7 +29,7 @@ function SeatsComponent() {
 
   if (loading) {
     return (
-      <div className="text-center mt-5">
+      <div className="text-center mt-5 home-container">
         <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>

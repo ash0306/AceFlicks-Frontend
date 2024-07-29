@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axiosInstance from '../../utilities/axiosConfig';
-import './HomepageStyles.css';
+import '../../styles/styles.css';
 import { useNavigate } from 'react-router-dom';
 
 function HomepageComponent() {
@@ -41,7 +41,7 @@ function HomepageComponent() {
   }
 
   if (loading) {
-    return <div className="text-center mt-5"><div className="spinner-border" role="status"><span className="visually-hidden">Loading...</span></div></div>;
+    return <div className="text-center mt-5 home-container"><div className="spinner-border" role="status"><span className="visually-hidden">Loading...</span></div></div>;
   }
 
   return (

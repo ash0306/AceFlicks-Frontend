@@ -4,7 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useFormValidation from "../../utilities/useFormValidation";
-import '../../App.css';
+import '../../styles/styles.css';
 import axiosInstance from "../../utilities/axiosConfig";
 import ToastNotification from "../InfoComponents/ToastNotification";
 import { Spinner } from 'react-bootstrap';

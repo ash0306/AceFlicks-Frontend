@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axiosInstance from '../../utilities/axiosConfig';
-import './HomepageStyles.css';
+import '../../styles/styles.css';
 import ShowtimeItem from './ShowtimeItem';
 
 function ShowtimesComponent() {
@@ -34,7 +34,7 @@ function ShowtimesComponent() {
 
   if (loading) {
     return (
-      <div className="text-center mt-5">
+      <div className="text-center mt-5 home-container">
         <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
