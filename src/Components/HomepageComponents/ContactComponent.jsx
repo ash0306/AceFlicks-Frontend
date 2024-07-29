@@ -10,7 +10,7 @@ function ContactComponent() {
                 </div>
             </div>
             <div className="row py-3">
-                <div className="col-md-6">
+                <div className="col-md-8">
                     <h5 className="fw-bold color-font">Address</h5>
                     <p className="text-white">
                         AceTickets<br/>
@@ -24,7 +24,7 @@ function ContactComponent() {
                         Email: acetickets535@email.com
                     </p>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-4">
                     <h5 className="py-3 color-font">Socials:</h5>
                     <h4 className="text-white">
                         <i className="bi bi-facebook m-2"></i>
