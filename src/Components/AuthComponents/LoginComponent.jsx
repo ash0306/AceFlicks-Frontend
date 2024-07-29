@@ -7,7 +7,7 @@ import useFormValidation from "../../utilities/useFormValidation";
 import '../../styles/styles.css';
 import axiosInstance from '../../utilities/axiosConfig';
 import { jwtDecode } from 'jwt-decode';
-import ToastNotification from '../InfoComponents/ToastNotification';
+import ToastNotification from '../NotificationComponents/ToastNotification';
 
 
 function LoginComponent() {

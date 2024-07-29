@@ -39,7 +39,7 @@ function SeatsComponent() {
 
   if (error) {
     return (
-      <div className="text-center mt-5">
+      <div className="text-center mt-5 home-container">
         <p>{error}</p>
       </div>
     );

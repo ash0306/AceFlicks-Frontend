@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import useFormValidation from "../../utilities/useFormValidation";
 import '../../styles/styles.css';
 import axiosInstance from "../../utilities/axiosConfig";
-import ToastNotification from "../InfoComponents/ToastNotification";
+import ToastNotification from '../NotificationComponents/ToastNotification';
 import { Spinner } from 'react-bootstrap';
 
 function RegisterComponent() {

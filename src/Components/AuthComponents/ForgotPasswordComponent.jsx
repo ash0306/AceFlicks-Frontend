@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useFormValidation from "../../utilities/useFormValidation";
 import '../../styles/styles.css';
 import axiosInstance from '../../utilities/axiosConfig';
-import ToastNotification from '../InfoComponents/ToastNotification';
+import ToastNotification from '../NotificationComponents/ToastNotification';
 
 function ForgotPasswordComponent() {
     useFormValidation();

@@ -20,7 +20,7 @@ const ShowtimeItem = ({ showtime, index }) => {
             <strong>Available Seats:</strong> {showtime.availableSeats} <br />
             <strong>Ticket Price:</strong> Rs. {showtime.ticketPrice} <br />
             <strong>Status:</strong> {showtime.status} <br />
-            <button className='btn my-2' style={{backgroundColor: "#FF8225"}} onClick={() => handleBookTickets(showtime)}>Book Tickets</button>
+            <button className='btn my-2' style={{backgroundColor: "#FF725E"}} onClick={() => handleBookTickets(showtime)}>Book Tickets</button>
         </li>
     </div>
     )

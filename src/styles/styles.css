@@ -1,9 +1,11 @@
+/* home page component */
 html{
   background-color: #1f1f1f;
 }
+
 .home-container{
   background-color: #1f1f1f;
-    color: white;
+  color: white;
 }
 
 .nowShowing-section {
@@ -54,6 +56,7 @@ html{
   background-color: #555;
 }
 
+/* auth componenets */
 .main-container{
     background-color: #1F1F1F;
 }
@@ -62,6 +65,12 @@ html{
     background-color: white;
 }
 
+
+/* navbar component */
 #navbar{
     color: white;
+}
+
+.dropdown-item:hover{
+  background-color: #FF725E;
 }
