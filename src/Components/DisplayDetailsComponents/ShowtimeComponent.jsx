@@ -51,16 +51,20 @@ function ShowtimesComponent() {
         {showtimes.length === 0 ? (
           <p className="text-center">No showtimes available.</p>
         ) : (
-          showtimes.map((mainGroup, index) => (
-            <div className="mb-4">
-                <h4>{mainGroup.name}</h4>
-                <ul className="list-unstyled">
-                {mainGroup.showtimes.map((showtime, index) => (
-                    <ShowtimeItem key={index} showtime={showtime} />
-                ))}
-                </ul>
-            </div>
-          ))
+          showtimes.map((mainGroup, groupIndex) => (
+          <div key={groupIndex} className="mb-4">
+            <h4>{mainGroup.name}</h4>
+            <ul className="list-unstyled">
+              {mainGroup.showtimes.map((showtime, showtimeIndex) => (
+                <ShowtimeItem 
+                  key={showtime.id}
+                  showtime={showtime}
+                  index={showtimeIndex}
+                />
+              ))}
+            </ul>
+          </div>
+        ))
         )}
       </div>
     </div>

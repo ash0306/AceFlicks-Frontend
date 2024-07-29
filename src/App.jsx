@@ -7,6 +7,7 @@ import RegisterComponent from './Components/AuthComponents/RegisterComponent'
 import LoginComponent from './Components/AuthComponents/LoginComponent';
 import HomepageComponent from './Components/DisplayDetailsComponents/HomepageComponent';
 import ShowtimeComponent from './Components/DisplayDetailsComponents/ShowtimeComponent';
+import SeatsComponent from './Components/DisplayDetailsComponents/SeatsComponent';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/login' element={<LoginComponent/>}/>
         <Route path='/register' element={<RegisterComponent/>}/>
         <Route path='/showtimes' element={<ShowtimeComponent/>}/>
+        <Route path='/seats' element={<SeatsComponent/>}/>
       </Routes>
   )
 }
