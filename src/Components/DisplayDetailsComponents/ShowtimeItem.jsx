@@ -6,7 +6,7 @@ const ShowtimeItem = ({ showtime, index }) => {
     const navigate = useNavigate();
     
     const handleBookTickets = (showtime) =>{
-        navigate('/seats', { state: { showtime: showtime } });
+        navigate(`/${showtime.theatre}/${showtime.movie}/${showtime.id}/seats`, { state: { showtime: showtime } });
     }
 
     return (

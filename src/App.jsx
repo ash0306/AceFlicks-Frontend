@@ -17,8 +17,8 @@ function App() {
         <Route path='/' element={<HomepageComponent/>}/>
         <Route path='/login' element={<LoginComponent/>}/>
         <Route path='/register' element={<RegisterComponent/>}/>
-        <Route path='/showtimes' element={<ShowtimeComponent/>}/>
-        <Route path='/seats' element={<SeatsComponent/>}/>
+        <Route path='/:type/:name/showtimes' element={<ShowtimeComponent/>}/>
+        <Route path='/:movie/:theatre/:showtime/seats' element={<SeatsComponent/>}/>
         <Route path='/test' element={<TestComponent/>}/>
       </Routes>
   )

@@ -44,7 +44,7 @@ const NowShowingComponent = () => {
     }
 
     const handleMovieSelection = (title) => {
-        navigate('/showtimes', { state: { movieTitle: title } });
+        navigate(`/movie/${title}/showtimes`);
     };
 
     const toggleSearch = () => {

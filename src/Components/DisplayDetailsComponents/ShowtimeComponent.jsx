@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axiosInstance from '../../utilities/axiosConfig';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -9,8 +9,9 @@ import ShowtimeItem from './ShowtimeItem';
 import NavBarComponent from '../HeaderComponents/NavBarComponent';
 
 function ShowtimesComponent() {
-  const location = useLocation();
-  const { movieTitle, theatreName } = location.state || {};
+  const { type, name } = useParams();
+  const [movieTitle, setMovieTitle] = useState('');
+  const [theatreName, setTheatreName] = useState('');
   const [showtimes, setShowtimes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -19,10 +20,12 @@ function ShowtimesComponent() {
 
   useEffect(() => {
     let endpoint = '';
-    if (movieTitle) {
-      endpoint = `/showtimes/movie/${movieTitle}`;
-    } else if (theatreName) {
-      endpoint = `/showtimes/theatre/${encodeURIComponent(theatreName)}`;
+    if (type == 'movie') {
+      setMovieTitle(name);
+      endpoint = `/showtimes/movie/${name}`;
+    } else if (type == 'theatre') {
+      setTheatreName(name);
+      endpoint = `/showtimes/theatre/${name}`;
     }
 
     if (endpoint) {
@@ -36,7 +39,7 @@ function ShowtimesComponent() {
           setLoading(false);
         });
     }
-  }, [movieTitle, theatreName]);
+  }, [type, name]);
 
   const filteredShowtimes = showtimes.filter(mainGroup => 
     mainGroup.showtimes.some(showtime => 
@@ -65,7 +68,7 @@ function ShowtimesComponent() {
           {weekDates.map(date => (
             <button
               key={date}
-              className={`btn btn-secondary mx-1 ${isSameDay(date, selectedDate) ? 'active' : ''}`}
+              className={`btn btn-secondary mx-1 ${isSameDay(date, selectedDate) ? 'active color-btn' : ''}`}
               onClick={() => setSelectedDate(date)}
               id='color-btn'
             >

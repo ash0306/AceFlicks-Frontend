@@ -34,7 +34,7 @@ const ShowTheatreComponent = () => {
     }, [searchQuery, theatres]);
 
     const handleTheatreSelection = (name) => {
-        navigate('/showtimes', { state: { theatreName: name } });
+        navigate(`/theatre/${name}/showtimes`);
     };
 
     const toggleSearch = () => {
