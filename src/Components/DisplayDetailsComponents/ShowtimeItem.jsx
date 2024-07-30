@@ -6,14 +6,14 @@ const ShowtimeItem = ({ showtime, index }) => {
     const navigate = useNavigate();
     
     const handleBookTickets = (showtime) =>{
-        navigate(`/${showtime.theatre}/${showtime.movie}/${showtime.id}/seats`, { state: { showtime: showtime } });
+        navigate(`/${showtime.theatre}/${showtime.movie}/${showtime.id}/seats`, { state: { showtime: showtime }, replace: true });
     }
 
     return (
         <div className="card h-100">
             <div className="card-body">
                 <h5 className="card-title">Showtime {index + 1}</h5>
-                <p className="card-text"><strong>Date:</strong> {new Date(showtime.startTime).toLocaleDateString()}</p>
+                <p className="card-text"><strong>Date:</strong> {new Date(showtime.startTime).toLocaleDateString('en-GB')}</p>
                 <p className="card-text"><strong>Start Time:</strong> {new Date(showtime.startTime).toLocaleTimeString()}</p>
                 <p className="card-text"><strong>End Time:</strong> {new Date(showtime.endTime).toLocaleTimeString()}</p>
                 <p className="card-text"><strong>Available Seats:</strong> {showtime.availableSeats}</p>

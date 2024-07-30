@@ -9,6 +9,7 @@ import ShowtimeComponent from './Components/DisplayDetailsComponents/ShowtimeCom
 import SeatsComponent from './Components/DisplayDetailsComponents/SeatsComponent';
 import HomepageComponent from './Components/HomepageComponents/HomepageComponent';
 import TestComponent from './Components/TestComponent';
+import BookingDetailsComponents from './Components/BookingDetailsComponents/BookingDetailsComponents';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/register' element={<RegisterComponent/>}/>
         <Route path='/:type/:name/showtimes' element={<ShowtimeComponent/>}/>
         <Route path='/:movie/:theatre/:showtime/seats' element={<SeatsComponent/>}/>
+        <Route path='/:movie/:theatre/:showtime/:seats/booking' element={<BookingDetailsComponents/>}/>
         <Route path='/test' element={<TestComponent/>}/>
       </Routes>
   )

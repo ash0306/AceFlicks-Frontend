@@ -68,7 +68,7 @@ function ShowtimesComponent() {
           {weekDates.map(date => (
             <button
               key={date}
-              className={`btn btn-secondary mx-1 ${isSameDay(date, selectedDate) ? 'active color-btn' : ''}`}
+              className={`btn btn-secondary mx-1 ${isSameDay(date, selectedDate) ? 'active' : ''}`}
               onClick={() => setSelectedDate(date)}
               id='color-btn'
             >

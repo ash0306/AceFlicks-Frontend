@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import axiosInstance from '../../utilities/axiosConfig';
@@ -10,6 +10,7 @@ import ToastNotification from '../NotificationComponents/ToastNotification';
 function SeatsComponent() {
   const location = useLocation();
   const { showtime } = location.state || {};
+  const navigate = useNavigate();
   const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,17 +22,25 @@ function SeatsComponent() {
     });
 
   useEffect(() => {
-    axiosInstance.get(`/showtimes/seats/${showtime.id}`)
-      .then(response => {
-        setSeats(response.data || []);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching seats:', error);
-        setError('Failed to load seats');
-        setLoading(false);
-      });
-  }, [showtime]);
+    const fetchData = async () => {
+      await axiosInstance.get(`/showtimes/seats/${showtime.id}`)
+        .then(response => {
+          setSeats(response.data || []);
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error('Error fetching seats:', error);
+          setError('Failed to load seats');
+          setLoading(false);
+        });
+    }
+    if(!showtime) {
+      navigate('/', {replace: true});
+    }
+    else{
+      fetchData(showtime);
+    }
+  }, [showtime, navigate]);
 
   const toggleSeatSelection = (seatId) => {
     setSelectedSeats(prevSelectedSeats => {
@@ -59,6 +68,16 @@ function SeatsComponent() {
   const closeToast = () => {
     setToastConfig((prevState) => ({ ...prevState, show: false }));
   };
+
+  const handleConfirmSelection = () => {
+    if (selectedSeats.length === 0) {
+      newToast('bg-danger', 'Please select at least one seat.');
+      return;
+    }
+    console.log(selectedSeats);
+    console.log(showtime);
+    navigate(`/${showtime.movie}/${showtime.theatre}/${showtime.id}/${selectedSeats.length}/booking`, {state:{seats: selectedSeats, showtime: showtime}, replace: true})
+  }
 
   if (loading) {
     return (
@@ -94,9 +113,19 @@ function SeatsComponent() {
       <NavBarComponent/>
       <div className="container ">
         <h1 className="text-center mb-4"><span className='color-font'>Seat</span> Layout</h1>
+        <div className='d-flex justify-content-md-between'>
+          <div className='d-flex flex-column'>
+            <h4>{showtime.movie} - {showtime.theatre}</h4>
+            <p>{new Date(showtime.startTime).toLocaleDateString('en-GB')}</p>
+            <p>{new Date(showtime.startTime).toLocaleTimeString()} - {new Date(showtime.endTime).toLocaleTimeString()}</p><br/>
+          </div>
+          <div className='ms-3'>
+            <button className='btn color-bg' id='color-btn' onClick={() => handleConfirmSelection()}>Confirm Selection <i className="bi bi-arrow-right"></i></button>
+          </div>
+        </div>
         <div>
-          <div className='d-flex justify-content-sm-between flex-wrap flex-md-nowrap'>
-            <div>
+          {/* guide & book ticket button */}
+            <div className='d-flex flex-row'>
             <div className='d-flex mb-3'>
               <div className='btn btn-success btn-outline-success text-white p-2 mx-3 col-3'>
                 A1
@@ -110,18 +139,15 @@ function SeatsComponent() {
               <div className='col-9 my-auto'> - Unavailable</div>
             </div>
             <div className='d-flex mb-3'>
-              <div className='btn btn-light btn-outline-success text-success p-2 mx-3 col-3'>
+              <div className='btn btn-light text-success p-2 mx-3 col-3'>
                 A1
               </div>
               <div className='col-9 my-auto'> - Selected</div>
             </div>
-            </div>
-            <div className='d-flex ms-5'>
-              <button className='btn color-bg my-auto' id='color-btn'>Book Tickets</button>
-            </div>
           </div>
         </div>
         <br></br>
+        {/* seat layout */}
         <div className="container" style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
           {rows.map(row => (
             <div key={row} className="d-flex justify-content-md-center my-3">
