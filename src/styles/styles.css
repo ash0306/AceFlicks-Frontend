@@ -112,3 +112,15 @@ html{
 .card-title, .card-text, .btn {
     color: #fff;
 }
+
+/* seat component */
+#seat-btn{
+  color: white;
+}
+
+#seat-btn:hover{
+  background-color: white;
+  border-color: #198754;
+  border-width: 3px;
+  color: #198754;
+}

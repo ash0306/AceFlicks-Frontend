@@ -11,6 +11,8 @@ const ToastNotification = ({ classBackground, message, show, onClose }) => {
         onClose={onClose}
         show={show}
         className={`toast align-items-center text-white border-0 ${classBackground}`}
+        autohide
+        delay={3000}
       >
         <div className="d-flex">
           <Toast.Body>{message}</Toast.Body>

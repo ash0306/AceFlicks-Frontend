@@ -38,7 +38,7 @@ function NavBarComponent() {
             {isLoggedIn ? (
               <div className="dropdown">
               <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person h4"></i>
+                <i className="bi bi-person h4"></i>
               </button>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
