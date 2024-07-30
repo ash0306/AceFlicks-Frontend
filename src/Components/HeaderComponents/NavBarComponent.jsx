@@ -29,28 +29,26 @@ function NavBarComponent() {
         <div className="row">
           <div className="col-6 p-2">
             <h3 className="fw-bold">
-              <Link to="#" className="text-light text-decoration-none">
-                <img src="/AceTicketsLogo.png" className="img-fluid me-3" style={{width:"70px"}} alt="AceTickets"/> AceTickets
+              <Link to="/" className="text-light text-decoration-none">
+                <img src="/AceTicketsLogo.png" className="img-fluid me-3" style={{width:"70px"}} alt="AceTickets"/><span className=''>AceTickets</span>
               </Link>
             </h3>
           </div>
-          <div className="col-6 d-flex justify-content-end">
-            <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i className="bi bi-person-circle h4"></i>
-                </button>
-                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                  {isLoggedIn ? (
-                    <>
-                      <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
-                      <li><Link to="/bookings" className="dropdown-item">Bookings</Link></li>
-                      <li><Link to="/logout" className="dropdown-item">Logout</Link></li>
-                    </>
-                  ) : (
-                    <li><Link to="/login" className="dropdown-item">Login</Link></li>
-                  )}
-                </ul>
-              </div>
+          <div className="col-6 d-flex justify-content-end align-items-center">
+            {isLoggedIn ? (
+              <div className="dropdown">
+              <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person h4"></i>
+              </button>
+              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
+                    <li><Link to="/bookings" className="dropdown-item">Bookings</Link></li>
+                    <li><Link to="/logout" className="dropdown-item">Logout</Link></li>
+              </ul>
+            </div>
+            ) : (
+              <button className='btn color-bg text-white fs-5' id='color-btn'><Link to='/login' className='text-decoration-none text-white'>Login</Link></button>
+            )}
           </div>
         </div>
       </div>
