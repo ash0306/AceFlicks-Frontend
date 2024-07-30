@@ -3,6 +3,8 @@ import bookingImage from '../../assets/images/bookingImage.png'
 import NavBarComponent from '../HeaderComponents/NavBarComponent'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axiosInstance from '../../utilities/axiosConfig';
+import ModalComponent from '../NotificationComponents/ModalComponent';
+import failure from '../../assets/images/failure.png';
 
 function BookingDetailsComponents() {
     const location = useLocation();
@@ -16,6 +18,27 @@ function BookingDetailsComponents() {
     const [gst, setGst] = useState(0);
     const [totalFee, setTotalFee] = useState(0);
     const [timeLeft, setTimeLeft] = useState(120);
+    const [modalConfig, setModalConfig] = useState({
+        show: false,
+        title: '',
+        message: '',
+        imageSrc: '',
+        redirectUrl: ''
+    });
+
+    const ReserveAndFreeSeats = async (seats) => {
+        await axiosInstance.post('/bookings/reserveAndFreeSeats',seats,{
+            withCredentials: true,
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error('Error reserving/freeing seats:', error);
+            setError('Failed to reserve/free seats');
+            setLoading(false);
+        })
+    }
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -31,15 +54,6 @@ function BookingDetailsComponents() {
 
         return () => clearInterval(timer);
     }, []);
-
-    const formatTime = (seconds) => {
-        const minutes = Math.floor(seconds / 60);
-        const secs = seconds % 60;
-        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-    };
-    const handleTimeUp = () => {
-        alert('Time is up!');
-    };
 
     useEffect(() => {
         console.log("showtime:"+ JSON.stringify(showtime));
@@ -57,22 +71,12 @@ function BookingDetailsComponents() {
                 });
         }
 
-        const ReserveSeats = async (seats) => {
-            await axiosInstance.post('/bookings/reserveSeats',seats,{
-                withCredentials: true,
-            })
-                .then(response => {
-                    console.log(response);
-                })
-                .catch
-        }
-
         if(!showtime || !seats) {
             navigate(-1)
         }
         else{
             fetchData(showtime);
-            ReserveSeats(seats);
+            ReserveAndFreeSeats(seats);
         }
     }, [seats, showtime, navigate]);
 
@@ -89,6 +93,27 @@ function BookingDetailsComponents() {
         const calculatedTotalFee = calculatedBaseFee + parseFloat(calculatedConvenienceFee) + parseFloat(calculatedGst);
         setTotalFee(calculatedTotalFee);
     },[baseFee, convenienceFee, gst, totalFee]);
+
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    };
+    
+    const handleTimeUp = () => {
+        ReserveAndFreeSeats(seats);
+        newModal( 'Time out!','Your booking time has expired. Please try again.', `${failure}`,'/');
+    };
+
+    const newModal = (title, message, imageSrc, redirectUrl) => {
+        setModalConfig({
+            show: true,
+            title,
+            message,
+            imageSrc,
+            redirectUrl
+        });
+    };
 
 
   if (loading) {
@@ -115,7 +140,7 @@ function BookingDetailsComponents() {
         <div className="container p-3">
             <div className="row">
                 <div className="col-6">
-                    <h1 className="fw-bold my-3">Booking</h1>
+                    <h1 className="fw-bold my-3">Complete the booking</h1>
                 </div>
                 <div className="col-6 d-flex justify-content-end align-items-center">
                     <h4 className="fw-bold">Time Left: <span className='text-danger'>{formatTime(timeLeft)}</span></h4>
@@ -177,6 +202,7 @@ function BookingDetailsComponents() {
                 </div>
             </div>
         </div>
+        <ModalComponent show={modalConfig.show} title={modalConfig.title} message={modalConfig.message} imageSrc={modalConfig.imageSrc} redirectUrl={modalConfig.redirectUrl}/>
     </div>
   )
 }
