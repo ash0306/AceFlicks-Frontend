@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axiosInstance from '../../utilities/axiosConfig';
+import 'react-datepicker/dist/react-datepicker.css';
 import { addDays, isSameDay, eachDayOfInterval, startOfToday } from 'date-fns';
 import '../../styles/styles.css';
 import ShowtimeItem from './ShowtimeItem';
@@ -13,10 +14,8 @@ function ShowtimesComponent() {
   const [showtimes, setShowtimes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
-
-  // Generate an array of dates for the current week starting from today
   const today = startOfToday();
-  const weekDates = eachDayOfInterval({ start: today, end: addDays(today, 7) });
+  const weekDates = eachDayOfInterval({ start: today, end: addDays(today, 6) });
 
   useEffect(() => {
     let endpoint = '';
@@ -57,7 +56,7 @@ function ShowtimesComponent() {
 
   return (
     <div className='home-container'>
-      <NavBarComponent/>
+      <NavBarComponent />
       <div className="container my-3">
         <h2 className="text-center mb-4">
           {movieTitle ? `Showtimes for ${movieTitle}` : `Showtimes at ${theatreName}`}
@@ -68,6 +67,7 @@ function ShowtimesComponent() {
               key={date}
               className={`btn btn-secondary mx-1 ${isSameDay(date, selectedDate) ? 'active' : ''}`}
               onClick={() => setSelectedDate(date)}
+              id='color-btn'
             >
               {date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
             </button>
@@ -79,18 +79,19 @@ function ShowtimesComponent() {
           filteredShowtimes.map((mainGroup, groupIndex) => (
             <div key={groupIndex} className="mb-4">
               <h4>{mainGroup.name}</h4>
-              <ul className="list-unstyled">
+              <div className="row">
                 {mainGroup.showtimes
                   .filter(showtime => isSameDay(new Date(showtime.startTime), selectedDate))
                   .map((showtime, showtimeIndex) => (
-                    <ShowtimeItem 
-                      key={showtime.id}
-                      showtime={showtime}
-                      index={showtimeIndex}
-                    />
+                    <div key={showtime.id} className="col-md-3 col-sm-6 mb-3">
+                      <ShowtimeItem 
+                        showtime={showtime}
+                        index={showtimeIndex}
+                      />
+                    </div>
                   ))
                 }
-              </ul>
+              </div>
             </div>
           ))
         )}

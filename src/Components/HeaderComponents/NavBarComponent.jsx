@@ -30,7 +30,7 @@ function NavBarComponent() {
           <div className="col-6 p-2">
             <h3 className="fw-bold">
               <Link to="/" className="text-light text-decoration-none">
-                <img src="/AceTicketsLogo.png" className="img-fluid me-3" style={{width:"70px"}} alt="AceTickets"/><span className=''>AceTickets</span>
+                <img src="/AceTicketsLogo.png" className="img-fluid me-3" style={{width:"70px"}} alt="AceTickets"/>  Ace<span className='color-font'>Tickets</span>
               </Link>
             </h3>
           </div>
