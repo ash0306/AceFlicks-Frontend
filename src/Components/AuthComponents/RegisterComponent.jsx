@@ -8,6 +8,7 @@ import '../../styles/styles.css';
 import axiosInstance from "../../utilities/axiosConfig";
 import ToastNotification from '../NotificationComponents/ToastNotification';
 import { Spinner } from 'react-bootstrap';
+import NavBarComponent from "../HeaderComponents/NavBarComponent";
 
 function RegisterComponent() {
   useFormValidation();
@@ -109,6 +110,7 @@ function RegisterComponent() {
 
   return (
     <div className="main-container">
+      <NavBarComponent/>
       <div className="container p-3" id="div-content">
         <div className="row justify-content-center">
           <div className="col-12 col-md-6 container border rounded shadow-lg" id="card-form">
