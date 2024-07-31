@@ -6,6 +6,8 @@ import axiosInstance from '../../utilities/axiosConfig';
 import ModalComponent from '../NotificationComponents/ModalComponent';
 import failure from '../../assets/images/failure.png';
 import success from '../../assets/images/success.png';
+import RefreshModal from '../NotificationComponents/RefreshModalComponent';
+import { useSelector } from 'react-redux';
 
 function BookingDetailsComponents() {
     const location = useLocation();
@@ -26,6 +28,7 @@ function BookingDetailsComponents() {
         imageSrc: '',
         redirectUrl: ''
     });
+    const { userId } = useSelector((state) => state.auth);
 
     const ReserveSeats = async (seats) => {
         await axiosInstance.post('/bookings/reserveSeats',seats,{
@@ -55,18 +58,34 @@ function BookingDetailsComponents() {
         })
     }
 
-    // useEffect for refresh
+    const [modalShow, setModalShow] = useState(false);
+
+    // Function to handle "Continue" action
+    const handleContinue = () => {
+        FreeSeats(seats);
+        navigate('/');
+        setModalShow(false);
+    };
+
+    // Function to handle "Cancel" action
+    const handleCancel = () => {
+        setModalShow(false);
+    };
+
+    //useeffect for page refresh
     useEffect(() => {
         const handleBeforeUnload = (event) => {
             event.preventDefault();
-        // Custom logic to handle the refresh
-        // Display a confirmation message or perform necessary actions
+            setModalShow(true);
         };
+
         window.addEventListener('beforeunload', handleBeforeUnload);
+
         return () => {
         window.removeEventListener('beforeunload', handleBeforeUnload);
         };
-    }, []);    
+    }, []);
+    
     // useEffect for timer
     useEffect(() => {
         const timer = setInterval(() => {
@@ -124,10 +143,6 @@ function BookingDetailsComponents() {
         setTotalFee(calculatedTotalFee);
     },[baseFee, convenienceFee, gst, totalFee]);
 
-    useEffect(() => {
-        
-    })
-
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         const secs = seconds % 60;
@@ -140,6 +155,7 @@ function BookingDetailsComponents() {
     };
 
     const newModal = (title, message, imageSrc, redirectUrl) => {
+        console.log("showing modal...");
         setModalConfig({
             show: true,
             title,
@@ -151,13 +167,13 @@ function BookingDetailsComponents() {
 
     const handleBooking = async () => {
         await axiosInstance.post('/bookings',{
-            "userId": 0,
+            "userId": userId,
             "showtimeId": showtimeDetails.id,
             "seats": seats
         })
         .then(response => {
             console.log(response);
-            navigate('/booking-confirmation');
+            navigate('/booking-confirmation', {state:{bookingDetails: response.data, showtime: showtime}, replace: true});
         })
         .catch(error => {
             console.error('Error booking:', error);
@@ -168,8 +184,9 @@ function BookingDetailsComponents() {
 
   if (loading) {
     return (
-      <div className="text-center mt-5 home-container">
-        <div className="spinner-border" role="status">
+      <div className="home-container">
+        <NavBarComponent/>
+        <div className="text-center spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
@@ -178,8 +195,9 @@ function BookingDetailsComponents() {
 
   if (error) {
     return (
-      <div className="text-center mt-5 home-container">
-        <p>{error}</p>
+      <div className="home-container">
+        <NavBarComponent/>
+        <p className='text-center '>{error}</p>
       </div>
     );
   }
@@ -219,7 +237,7 @@ function BookingDetailsComponents() {
                                             <p>{new Date(showtime.startTime).toLocaleTimeString()} - {new Date(showtime.endTime).toLocaleTimeString()}</p><br/>
                                             <div className="d-flex justify-content-between">
                                                 <p>Seats:</p>
-                                                <p className='fw-bold'>{seats.join(', ')}</p>
+                                                <p className='fw-bold'>{seats.length}</p>
                                             </div>
                                             <div className="d-flex justify-content-between">
                                                 <p>Base Fare:</p>
@@ -241,7 +259,7 @@ function BookingDetailsComponents() {
                                         </div>
                                         <div className="col text-center">
                                             <form className="flex justify-content-center">
-                                                <button type="submit" className="btn color-bg" id='color-btn'>Confirm Booking</button>
+                                                <button type="submit" className="btn color-bg" id='color-btn' onClick={() => handleBooking()}>Confirm Booking</button>
                                             </form>
                                         </div>
                                     </div>
@@ -252,6 +270,7 @@ function BookingDetailsComponents() {
                 </div>
             </div>
         </div>
+        <RefreshModal show={modalShow} onHide={() => setModalShow(false)} onContinue={handleContinue} onCancel={handleCancel} />
         <ModalComponent show={modalConfig.show} title={modalConfig.title} message={modalConfig.message} imageSrc={modalConfig.imageSrc} redirectUrl={modalConfig.redirectUrl}/>
     </div>
   )

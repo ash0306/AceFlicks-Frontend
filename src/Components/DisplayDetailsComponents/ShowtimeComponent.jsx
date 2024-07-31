@@ -49,8 +49,9 @@ function ShowtimesComponent() {
 
   if (loading) {
     return (
-      <div className="text-center mt-5 home-container">
-        <div className="spinner-border" role="status">
+      <div className="home-container">
+        <NavBarComponent/>
+        <div className="text-center spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>

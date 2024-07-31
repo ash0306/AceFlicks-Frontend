@@ -11,6 +11,7 @@ import HomepageComponent from './Components/HomepageComponents/HomepageComponent
 import TestComponent from './Components/TestComponent';
 import BookingDetailsComponents from './Components/BookingComponents/BookingDetailsComponents';
 import PrivateRoute from './utilities/PrivateRoute';
+import BookingConfirmationComponent from './Components/BookingComponents/BookingConfirmationComponent';
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
         <Route path='/:type/:name/showtimes' element={<ShowtimeComponent/>}/>
         <Route path='/:movie/:theatre/:showtime/seats' element={<PrivateRoute component={SeatsComponent}/>}/>
         <Route path='/:movie/:theatre/:showtime/:seats/booking' element={<PrivateRoute component={BookingDetailsComponents}/>}/>
-        <Route path='/:movie/booking-confirmation'/>
+        <Route path='/booking-confirmation' element={<PrivateRoute component={BookingConfirmationComponent}/>}/>
         <Route path='/test' element={<TestComponent/>}/>
       </Routes>
   )
