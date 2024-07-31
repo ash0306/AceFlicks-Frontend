@@ -10,6 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 import ToastNotification from '../NotificationComponents/ToastNotification';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../AuthSlice';
+import NavBarComponent from '../HeaderComponents/NavBarComponent';
 
 
 function LoginComponent() {
@@ -113,6 +114,7 @@ function LoginComponent() {
 
     return (
         <div className='main-container'>
+            <NavBarComponent/>
             <div className="container p-3 align-middle" id="div-content">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-6 container border rounded shadow-lg" id='card-form'>
