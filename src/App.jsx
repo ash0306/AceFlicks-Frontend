@@ -15,6 +15,7 @@ import PrivateRoute from './utilities/PrivateRoute';
 import BookingConfirmationComponent from './Components/BookingComponents/BookingConfirmationComponent';
 import ProfileComponent from './Components/UserComponents/ProfileComponent';
 import BookingHistoryComponent from './Components/UserComponents/BookingHistoryComponent';
+import LogoutComponent from './Components/AuthComponents/LogoutComponent';
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
         <Route path='/booking-confirmation' element={<PrivateRoute component={BookingConfirmationComponent}/>}/>
         <Route path='/profile' element={<PrivateRoute component={ProfileComponent}/>}/>
         <Route path='/user/bookings' element={<PrivateRoute component={BookingHistoryComponent}/>}/>
-        <Route path='/test' element={<TestComponent/>}/>
+        <Route path='/logout' element={<PrivateRoute component={LogoutComponent}/>}/>
       </Routes>
   )
 }
