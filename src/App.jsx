@@ -14,6 +14,7 @@ import BookingDetailsComponents from './Components/BookingComponents/BookingDeta
 import PrivateRoute from './utilities/PrivateRoute';
 import BookingConfirmationComponent from './Components/BookingComponents/BookingConfirmationComponent';
 import ProfileComponent from './Components/UserComponents/ProfileComponent';
+import BookingHistoryComponent from './Components/UserComponents/BookingHistoryComponent';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/:movie/:theatre/:showtime/:seats/booking' element={<PrivateRoute component={BookingDetailsComponents}/>}/>
         <Route path='/booking-confirmation' element={<PrivateRoute component={BookingConfirmationComponent}/>}/>
         <Route path='/profile' element={<PrivateRoute component={ProfileComponent}/>}/>
+        <Route path='/user/bookings' element={<PrivateRoute component={BookingHistoryComponent}/>}/>
         <Route path='/test' element={<TestComponent/>}/>
       </Routes>
   )

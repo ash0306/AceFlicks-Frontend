@@ -28,7 +28,7 @@ function NavBarComponent() {
               </button>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
-                    <li><Link to="/bookings" className="dropdown-item">Bookings</Link></li>
+                    <li><Link to="/user/bookings" className="dropdown-item">Bookings</Link></li>
                     <li><Link to="/logout" className="dropdown-item">Logout</Link></li>
               </ul>
             </div>
