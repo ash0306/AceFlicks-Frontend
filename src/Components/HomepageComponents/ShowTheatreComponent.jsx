@@ -13,7 +13,7 @@ const ShowTheatreComponent = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosInstance.get('/theatres');
+                const response = await axiosInstance.get('/theatres/names');
                 setTheatres(response.data);
                 setFilteredTheatres(response.data);
                 setLoading(false);
@@ -28,7 +28,7 @@ const ShowTheatreComponent = () => {
     useEffect(() => {
         setFilteredTheatres(
             theatres.filter(theatre =>
-                theatre.name.toLowerCase().includes(searchQuery.toLowerCase())
+                theatre.toLowerCase().includes(searchQuery.toLowerCase())
             )
         );
     }, [searchQuery, theatres]);
@@ -85,10 +85,9 @@ const ShowTheatreComponent = () => {
                 <p className='fs-5 mb-4'>Discover Your Favorite Theaters and the Best Showtimes</p>
                 <div className="d-flex overflow-auto theatre-section" style={{ whiteSpace: 'nowrap' }}>
                     {filteredTheatres.map((theatre, index) => (
-                        <div key={index} className="mx-3 border rounded border-white" style={{ display: 'inline-block', minWidth: '200px' }}>
+                        <div key={index} className="mx-3 border rounded border-white" style={{ display: 'inline-block', minWidth: '200px', cursor: 'pointer' }}>
                             <div className="text-center mt-2" onClick={() => handleTheatreSelection(theatre.name)}>
-                                <h5>{theatre.name}</h5>
-                                <p>{theatre.location}</p>
+                                <h5>{theatre}</h5>
                             </div>
                         </div>
                     ))}

@@ -44,9 +44,9 @@ function BookingDetailsComponents() {
         const timer = setInterval(() => {
         setTimeLeft(prevTime => {
             if (prevTime <= 1) {
-            clearInterval(timer);
-            handleTimeUp();
-            return 0;
+                clearInterval(timer);
+                handleTimeUp();
+                return 0;
             }
             return prevTime - 1;
         });

@@ -86,7 +86,7 @@ const NowShowingComponent = () => {
                                 src={movie.imageUrl}
                                 className="d-block w-100"
                                 alt={movie.title}
-                                style={{ height: "300px", objectFit: "cover" }}
+                                style={{ height: "300px", objectFit: "cover", cursor: 'pointer' }}
                                 onClick={() => handleMovieSelection(movie.title)}
                             />
                             <div className="text-center mt-2">
