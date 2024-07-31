@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import useFormValidation from "../../utilities/useFormValidation";
 import '../../styles/styles.css';
 import axiosInstance from '../../utilities/axiosConfig';
 import { jwtDecode } from 'jwt-decode';
 import ToastNotification from '../NotificationComponents/ToastNotification';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../AuthSlice';
 
 
 function LoginComponent() {
@@ -22,6 +24,16 @@ function LoginComponent() {
         classBackground: '',
         message: '',
     });
+    const dispatch = useDispatch();
+    const { isAuthenticated, role } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        console.log('role: ' + role);
+        if (isAuthenticated) {
+        navigate(role === 'Admin' ? '/test' : '/', { replace: true });
+        }
+    }, [isAuthenticated, role, navigate]);
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -43,7 +55,12 @@ function LoginComponent() {
                     decodeAndSetToken(response.data.token);
                     newToast("bg-success", "Login successful! Redirecting....");
                     setTimeout(() => {
-                        navigate('/');
+                        if(response.data.role == "User"){
+                            navigate('/');
+                        }
+                        else if(response.data.role == "Admin"){
+                            navigate('/test');
+                        }
                     }, 3000);
                 }
             })
@@ -67,7 +84,7 @@ function LoginComponent() {
             role: decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"],
             exp: decodedToken.exp
         };
-        localStorage.setItem("user", JSON.stringify(user));
+        dispatch(login({ userId: user.id, role: user.role }));
     }
 
     const newToast = (classBackground, message) => {

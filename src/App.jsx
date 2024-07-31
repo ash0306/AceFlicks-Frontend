@@ -9,7 +9,8 @@ import ShowtimeComponent from './Components/DisplayDetailsComponents/ShowtimeCom
 import SeatsComponent from './Components/DisplayDetailsComponents/SeatsComponent';
 import HomepageComponent from './Components/HomepageComponents/HomepageComponent';
 import TestComponent from './Components/TestComponent';
-import BookingDetailsComponents from './Components/BookingDetailsComponents/BookingDetailsComponents';
+import BookingDetailsComponents from './Components/BookingComponents/BookingDetailsComponents';
+import PrivateRoute from './utilities/PrivateRoute';
 
 function App() {
 
@@ -19,8 +20,9 @@ function App() {
         <Route path='/login' element={<LoginComponent/>}/>
         <Route path='/register' element={<RegisterComponent/>}/>
         <Route path='/:type/:name/showtimes' element={<ShowtimeComponent/>}/>
-        <Route path='/:movie/:theatre/:showtime/seats' element={<SeatsComponent/>}/>
-        <Route path='/:movie/:theatre/:showtime/:seats/booking' element={<BookingDetailsComponents/>}/>
+        <Route path='/:movie/:theatre/:showtime/seats' element={<PrivateRoute component={SeatsComponent}/>}/>
+        <Route path='/:movie/:theatre/:showtime/:seats/booking' element={<PrivateRoute component={BookingDetailsComponents}/>}/>
+        <Route path='/:movie/booking-confirmation'/>
         <Route path='/test' element={<TestComponent/>}/>
       </Routes>
   )

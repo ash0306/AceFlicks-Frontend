@@ -4,24 +4,10 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../styles/styles.css';
+import { useSelector } from 'react-redux';
 
 function NavBarComponent() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect( () => {
-    axiosInstance.get('/auth/user',{
-        withCredentials: true,
-    })
-    .then(response =>{
-        console.log(response);
-        setIsLoggedIn(true);
-        console.log(isLoggedIn);
-    })
-    .catch(error => {
-        console.log(error);
-        setIsLoggedIn(false);
-    });
-  },[]);
+  const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
 
   return (
     <div className='home-container'>

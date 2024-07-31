@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import axiosInstance from '../../utilities/axiosConfig';
 import ModalComponent from '../NotificationComponents/ModalComponent';
 import failure from '../../assets/images/failure.png';
+import success from '../../assets/images/success.png';
 
 function BookingDetailsComponents() {
     const location = useLocation();
@@ -26,20 +27,47 @@ function BookingDetailsComponents() {
         redirectUrl: ''
     });
 
-    const ReserveAndFreeSeats = async (seats) => {
-        await axiosInstance.post('/bookings/reserveAndFreeSeats',seats,{
+    const ReserveSeats = async (seats) => {
+        await axiosInstance.post('/bookings/reserveSeats',seats,{
             withCredentials: true,
         })
         .then(response => {
             console.log(response);
         })
         .catch(error => {
-            console.error('Error reserving/freeing seats:', error);
-            setError('Failed to reserve/free seats');
+            console.error('Error reserving seats:', error);
+            setError('Failed to reserve seats. ', error);
             setLoading(false);
         })
     }
 
+    const FreeSeats = async (seats) => {
+        await axiosInstance.post('/bookings/freeSeats',seats,{
+            withCredentials: true,
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error('Error freeing seats:', error);
+            setError('Failed to free seats. ', error);
+            setLoading(false);
+        })
+    }
+
+    // useEffect for refresh
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            event.preventDefault();
+        // Custom logic to handle the refresh
+        // Display a confirmation message or perform necessary actions
+        };
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);    
+    // useEffect for timer
     useEffect(() => {
         const timer = setInterval(() => {
         setTimeLeft(prevTime => {
@@ -55,6 +83,7 @@ function BookingDetailsComponents() {
         return () => clearInterval(timer);
     }, []);
 
+    // UseEffect to get showtime details
     useEffect(() => {
         console.log("showtime:"+ JSON.stringify(showtime));
         console.log("seat:"+ seats);
@@ -76,10 +105,11 @@ function BookingDetailsComponents() {
         }
         else{
             fetchData(showtime);
-            ReserveAndFreeSeats(seats);
+            ReserveSeats(seats);
         }
     }, [seats, showtime, navigate]);
 
+    // UseEffect to calculate fees
     useEffect(() => {
         const calculatedBaseFee = seats.length * showtime.ticketPrice;
         setBaseFee(calculatedBaseFee);
@@ -90,9 +120,13 @@ function BookingDetailsComponents() {
         const calculatedGst = (parseFloat(calculatedConvenienceFee) * 0.18).toFixed(2);
         setGst(parseFloat(calculatedGst));
 
-        const calculatedTotalFee = calculatedBaseFee + parseFloat(calculatedConvenienceFee) + parseFloat(calculatedGst);
+        const calculatedTotalFee = baseFee + convenienceFee + gst;
         setTotalFee(calculatedTotalFee);
     },[baseFee, convenienceFee, gst, totalFee]);
+
+    useEffect(() => {
+        
+    })
 
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
@@ -101,7 +135,7 @@ function BookingDetailsComponents() {
     };
     
     const handleTimeUp = () => {
-        ReserveAndFreeSeats(seats);
+        FreeSeats(seats);
         newModal( 'Time out!','Your booking time has expired. Please try again.', `${failure}`,'/');
     };
 
@@ -114,6 +148,22 @@ function BookingDetailsComponents() {
             redirectUrl
         });
     };
+
+    const handleBooking = async () => {
+        await axiosInstance.post('/bookings',{
+            "userId": 0,
+            "showtimeId": showtimeDetails.id,
+            "seats": seats
+        })
+        .then(response => {
+            console.log(response);
+            navigate('/booking-confirmation');
+        })
+        .catch(error => {
+            console.error('Error booking:', error);
+            newModal('Failed to book', `Unable to book your tickets at the moment. ${error}`, `${failure}`, '/');
+        });
+    }
 
 
   if (loading) {
