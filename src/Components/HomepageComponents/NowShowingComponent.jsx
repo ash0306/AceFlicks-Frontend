@@ -13,7 +13,7 @@ const NowShowingComponent = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosInstance.get('/movies');
+                const response = await axiosInstance.get('/movies/running');
                 setMovies(response.data);
                 setFilteredMovies(response.data);
                 setLoading(false);

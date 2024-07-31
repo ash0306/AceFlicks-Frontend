@@ -1,0 +1,12 @@
+.ag-theme-quartz {
+    --ag-foreground-color: #FFFFFF; /* White text for contrast */
+    --ag-background-color: #1A1A1A; /* Dark background */
+    --ag-header-foreground-color: #ff0000; /* Bright orange for header text */
+    --ag-header-background-color: #FF5722; /* Darker orange for header background */
+    --ag-odd-row-background-color: rgba(255, 165, 0, 0.1); /* Light orange for odd rows */
+    --ag-even-row-background-color: rgba(255, 165, 0, 0.2); /* Slightly darker light orange for even rows */
+    --ag-header-column-resize-handle-color: #FF9800; /* Orange resize handle */
+
+    --ag-font-size: 17px;
+    --ag-font-family: 'Arial', sans-serif; /* Change to a more modern font */
+}

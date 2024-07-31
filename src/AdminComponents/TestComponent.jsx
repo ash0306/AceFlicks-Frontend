@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import BookingConfirmationComponent from './BookingComponents/BookingConfirmationComponent'
+// import NewComponent from './NewComponent'
+import MoviesTable from './MoviesTableComponent'
 
 function TestComponent() {
   
   return (
     <div className='home-container'>
-      <BookingConfirmationComponent/>
+
+      <MoviesTable/>
     </div>
   )
 }

@@ -12,6 +12,8 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.2.7",
+    "ag-grid-community": "^32.0.2",
+    "ag-grid-react": "^32.0.2",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
@@ -19,6 +21,8 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "jwt-decode": "^4.0.0",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.8.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-datepicker": "^7.3.0",
