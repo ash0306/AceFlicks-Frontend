@@ -13,6 +13,7 @@ import '../../styles/styles.css';
 import NavBarComponent from '../../Components/HeaderComponents/NavBarComponent';
 import ToastNotification from '../../Components/NotificationComponents/ToastNotification';
 import { Tag } from 'primereact/tag';
+import { Link } from 'react-router-dom';
 
 export default function ShowtimesTable() {
     const [showtimes, setShowtimes] = useState([]);
@@ -133,7 +134,7 @@ export default function ShowtimesTable() {
                 <span className="">
                     <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." className="search-bar" />
                 </span>
-                <Button icon="pi pi-plus" className="ms-2 color-bg border border-none rounded" id='color-btn' label="Add Showtime" />
+                <Link to='/admin/add-showtime'><Button icon="pi pi-plus" className="ms-2 color-bg border border-none rounded" id='color-btn' label="Add Showtime" /></Link>
             </div>
         </div>
     );

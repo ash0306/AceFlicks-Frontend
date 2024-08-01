@@ -24,6 +24,7 @@ import TheatresTable from './AdminComponents/TableComponents/TheatresTableCompon
 import BookingsTable from './AdminComponents/TableComponents/BookingsTableComponent';
 import RegisterAdminComponent from './AdminComponents/FormComponents/RegisterAdminComponent';
 import AddMovieComponent from './AdminComponents/FormComponents/AddMovieComponent';
+import AddShowtimeComponent from './AdminComponents/FormComponents/AddShowtimeComponent';
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
         <Route path='/admin/bookings' element={<PrivateRoute component={BookingsTable}/>}/>
         <Route path='/admin/register-new' element={<PrivateRoute component={RegisterAdminComponent}/>}/>
         <Route path='/admin/add-movie' element={<PrivateRoute component={AddMovieComponent}/>}/>
+        <Route path='/admin/add-showtime' element={<PrivateRoute component={AddShowtimeComponent}/>}/>
 
 
         <Route path='/test' element={<TestComponent/>}/>
