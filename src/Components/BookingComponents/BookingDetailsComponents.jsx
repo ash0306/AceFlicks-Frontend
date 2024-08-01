@@ -73,19 +73,18 @@ function BookingDetailsComponents() {
     };
 
     //useeffect for page refresh
-    useEffect(() => {
-        const handleBeforeUnload = (event) => {
-            // event.preventDefault();
-            navigate('/');
-            setModalShow(true);
-        };
+    // useEffect(() => {
+    //     const handleBeforeUnload = (event) => {
+    //         // event.preventDefault();
+    //         // setModalShow(true);
+    //     };
 
-        window.addEventListener('beforeunload', handleBeforeUnload);
+    //     window.addEventListener('beforeunload', handleBeforeUnload);
 
-        return () => {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
-    }, []);
+    //     return () => {
+    //     window.removeEventListener('beforeunload', handleBeforeUnload);
+    //     };
+    // }, []);
     
     // useEffect for timer
     useEffect(() => {
@@ -264,7 +263,7 @@ function BookingDetailsComponents() {
                                         </div>
                                         <div className="col text-center">
                                             <form className="flex justify-content-center">
-                                                <button type="submit" className="btn color-bg" id='color-btn' onClick={() => handleBooking()}>Confirm Booking</button>
+                                                <button type="button" className="btn color-bg" id='color-btn' onClick={() => handleBooking()}>Confirm Booking</button>
                                             </form>
                                         </div>
                                     </div>
