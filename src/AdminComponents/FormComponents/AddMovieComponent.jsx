@@ -4,7 +4,8 @@ import useFormValidation from '../../utilities/useFormValidation';
 import NavBarComponent from '../../Components/HeaderComponents/NavBarComponent';
 import axiosInstance from '../../utilities/axiosConfig';
 import ToastNotification from '../../Components/NotificationComponents/ToastNotification';
-
+import addMovie from '../../assets/images/addMovie.png'
+import newMovie from '../../assets/images/newMovie.jpg'
 
 function AddMovieComponent() {
     useFormValidation();
@@ -24,6 +25,7 @@ function AddMovieComponent() {
     const [endDate, setEndDate] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [status, setStatus] = useState('');
+    const [isImageUploaded, setIsImageUploaded] = useState(false);
 
     const newToast = (classBackground, message) => {
         setToastConfig({
@@ -56,6 +58,7 @@ function AddMovieComponent() {
                 .setAttribute("src", result.info.secure_url);
             imageUploaded = result.info.secure_url;
             setImageUrl(result.info.secure_url)
+            setIsImageUploaded(true);
             console.log(imageUrl);
             }
         }
@@ -114,9 +117,12 @@ function AddMovieComponent() {
             <NavBarComponent/>
             <div className="container p-3 text-dark">
                 <div className="row justify-content-center">
-                    <div className="col-12 col-md-6 container border rounded shadow-lg" id="card-form">
+                    <div className="col-12 col-md-10 container border rounded shadow-lg" id="card-form">
                         <div className="row d-flex">
-                            <div className="py-5 col-12">
+                            <div class="d-none d-md-block col-5 p-0">
+                                <img src={newMovie} className="img-fluid rounded-start" style={{height:'100%', width:'auto'}}></img>
+                            </div>
+                            <div className="py-5 col-md-6 col-12">
                                 <div>
                                     <h1 className="text-center">ADD <span className='color-font'>MOVIE</span></h1>
                                 </div>
@@ -219,14 +225,15 @@ function AddMovieComponent() {
                                     <div className="row m-3">
                                         <div>
                                         <label>Upload Picture:</label>
-                                        <button id="upload_widget" onClick={handleImageUpload}>
+                                        <button className='ms-2 btn color-bg' id="upload_widget" onClick={handleImageUpload}>
                                             Upload file
                                         </button>
                                         </div>
-                                        <div>
-                                            <img id="uploadedimage" src="" style={{height:'50px', width:'50px'}}>
-                                            </img>
-                                        </div>
+                                        {isImageUploaded && (
+                                            <div>
+                                                <img id="uploadedimage" src={imageUrl} style={{height:'50px', width:'50px'}} alt="Uploaded" />
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="row m-3">
                                         <label htmlFor="status" className="form-label">Status</label>
