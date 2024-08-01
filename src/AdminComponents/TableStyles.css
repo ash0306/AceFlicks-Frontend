@@ -3,15 +3,24 @@
     border-radius: 4px;
 }
 
+.p-datatable-thead{
+    background-color: #FF725E;
+}
+
+.bookings-table .p-datatable-tbody > tr:nth-child(odd) {
+    background-color: #ebeaea; /* Light gray for odd rows */
+}
+
+.bookings-table .p-datatable-tbody > tr:nth-child(even) {
+    background-color: #ffffff; /* White for even rows */
+}
+
 .custom-button {
     background-color: #FF725E; /* Orange button */
     border: none;
     color: #fff; /* White text */
 }
 
-th.p-selection-column {
-  background-color: #ffa500;
-}
 
 .custom-button:hover {
     background-color: #e55e50; /* Darker orange on hover */
