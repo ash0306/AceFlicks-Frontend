@@ -60,7 +60,7 @@ function LoginComponent() {
                             navigate('/');
                         }
                         else if(response.data.role == "Admin"){
-                            navigate('/test');
+                            navigate('/admin/dashboard');
                         }
                     }, 3000);
                 }

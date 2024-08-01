@@ -2,7 +2,7 @@ import React from 'react'
 import NavBarComponent from '../Components/HeaderComponents/NavBarComponent'
 import adminDashboard from '../assets/images/adminDashboard.gif'
 
-function AdminDashboardComponents() {
+function AdminDashboardComponents() {    
   return (
     <div className='home-container'>
         <NavBarComponent/>

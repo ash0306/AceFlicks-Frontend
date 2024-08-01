@@ -128,13 +128,19 @@ export default function ShowtimesTable() {
     };
 
     const handleDelete = async () => {
-        await axiosInstance.delete('/showtimes/range', selectedShowtimeIds,{
-            withCredentials: true
+        console.log(selectedShowtimeIds);
+        await axiosInstance.delete('/showtimes/range', {
+            data: selectedShowtimeIds,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true,
         })
         .then(response => {
             console.log(response);
             newToast('bg-success', 'Showtimes deleted successfully!');
             fetchShowtimes();
+            setSelectedShowtimes([]);
         })
         .catch(error => {
             console.error('Error deleting showtimes:', error);
