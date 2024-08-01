@@ -4,6 +4,7 @@ import MoviesTable from './TableComponents/MoviesTableComponent'
 import BookingsTable from './TableComponents/BookingsTableComponent'
 import ShowtimesTable from './TableComponents/ShowtimesTableComponent'
 import TheatresTable from './TableComponents/TheatresTableComponent'
+import AdminDashboardComponents from './AdminDashboardComponents'
 
 function TestComponent() {
   return (
@@ -12,7 +13,8 @@ function TestComponent() {
       {/* <BookingsTable/> */}
       {/* <MoviesTable/> */}
       {/* <ShowtimesTable/> */}
-      <TheatresTable/>
+      {/* <TheatresTable/> */}
+      <AdminDashboardComponents/>
     </div>
   )
 }

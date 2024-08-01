@@ -17,6 +17,11 @@ import ProfileComponent from './Components/UserComponents/ProfileComponent';
 import BookingHistoryComponent from './Components/UserComponents/BookingHistoryComponent';
 import LogoutComponent from './Components/AuthComponents/LogoutComponent';
 import TestComponent from './AdminComponents/TestComponent';
+import AdminDashboardComponents from './AdminComponents/AdminDashboardComponents';
+import MoviesTable from './AdminComponents/TableComponents/MoviesTableComponent';
+import ShowtimesTable from './AdminComponents/TableComponents/ShowtimesTableComponent';
+import TheatresTable from './AdminComponents/TableComponents/TheatresTableComponent';
+import BookingsTable from './AdminComponents/TableComponents/BookingsTableComponent';
 
 function App() {
 
@@ -33,6 +38,13 @@ function App() {
         <Route path='/profile' element={<PrivateRoute component={ProfileComponent}/>}/>
         <Route path='/user/bookings' element={<PrivateRoute component={BookingHistoryComponent}/>}/>
         <Route path='/logout' element={<PrivateRoute component={LogoutComponent}/>}/>
+
+
+        <Route path='/admin/dashboard' element={<PrivateRoute component={AdminDashboardComponents}/>}/>
+        <Route path='/admin/movies' element={<PrivateRoute component={MoviesTable}/>}/>
+        <Route path='/admin/showtimes' element={<PrivateRoute component={ShowtimesTable}/>}/>
+        <Route path='/admin/theatres' element={<PrivateRoute component={TheatresTable}/>}/>
+        <Route path='/admin/bookings' element={<PrivateRoute component={BookingsTable}/>}/>
 
 
         <Route path='/test' element={<TestComponent/>}/>
