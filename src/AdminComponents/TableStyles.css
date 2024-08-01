@@ -26,6 +26,23 @@
     background-color: #e55e50; /* Darker orange on hover */
 }
 
+.custom-calendar-popup {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+}
+
+.p-datepicker {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+    z-index: 10000 !important; /* Ensure the datepicker itself is above other content */
+}
+
 
 /* Custom styles for DataTable */
 .p-datatable .p-datatable-header {
