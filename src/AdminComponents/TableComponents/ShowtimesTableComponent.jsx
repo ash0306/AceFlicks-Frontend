@@ -127,6 +127,21 @@ export default function ShowtimesTable() {
         }
     };
 
+    const handleDelete = async () => {
+        await axiosInstance.delete('/showtimes/range', selectedShowtimeIds,{
+            withCredentials: true
+        })
+        .then(response => {
+            console.log(response);
+            newToast('bg-success', 'Showtimes deleted successfully!');
+            fetchShowtimes();
+        })
+        .catch(error => {
+            console.error('Error deleting showtimes:', error);
+            newToast('bg-danger', 'Error deleting showtimes');
+        });
+    }
+
     const header = (
         <div className="flex flex-wrap align-items-center justify-content-between gap-2">
             <h1 className="text-xl text-900 font-bold">Showtimes</h1>
@@ -135,6 +150,7 @@ export default function ShowtimesTable() {
                     <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." className="search-bar" />
                 </span>
                 <Link to='/admin/add-showtime'><Button icon="pi pi-plus" className="ms-2 color-bg border border-none rounded" id='color-btn' label="Add Showtime" /></Link>
+                <div className="ms-2 btn color-bg" id='color-btn' onClick={handleDelete}><i class="bi bi-trash3"></i></div>
             </div>
         </div>
     );

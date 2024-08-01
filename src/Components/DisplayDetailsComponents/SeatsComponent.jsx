@@ -23,7 +23,9 @@ function SeatsComponent() {
 
   useEffect(() => {
     const fetchData = async () => {
-      await axiosInstance.get(`/showtimes/seats/${showtime.id}`)
+      await axiosInstance.get(`/showtimes/seats/${showtime.id}`,{
+        withCredentials: true,
+      })
         .then(response => {
           setSeats(response.data || []);
           setLoading(false);

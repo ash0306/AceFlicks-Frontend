@@ -75,7 +75,8 @@ function BookingDetailsComponents() {
     //useeffect for page refresh
     useEffect(() => {
         const handleBeforeUnload = (event) => {
-            event.preventDefault();
+            // event.preventDefault();
+            navigate('/');
             setModalShow(true);
         };
 
@@ -107,7 +108,9 @@ function BookingDetailsComponents() {
         console.log("showtime:"+ JSON.stringify(showtime));
         console.log("seat:"+ seats);
         const fetchData = async (showtime) => {
-            await axiosInstance.get(`/showtimes/${showtime.id}`)
+            await axiosInstance.get(`/showtimes/${showtime.id}`,{
+                withCredentials: true,
+            })
                 .then(response => {
                     setShowtimeDetails(response.data || []);
                     setLoading(false);
@@ -170,6 +173,8 @@ function BookingDetailsComponents() {
             "userId": userId,
             "showtimeId": showtimeDetails.id,
             "seats": seats
+        },{
+            withCredentials: true,
         })
         .then(response => {
             console.log(response);
