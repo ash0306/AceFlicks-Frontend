@@ -12,7 +12,7 @@ const ToastNotification = ({ classBackground, message, show, onClose }) => {
         show={show}
         className={`toast align-items-center text-white border-0 ${classBackground}`}
         autohide
-        delay={3000}
+        delay={5000}
       >
         <div className="d-flex">
           <Toast.Body>{message}</Toast.Body>

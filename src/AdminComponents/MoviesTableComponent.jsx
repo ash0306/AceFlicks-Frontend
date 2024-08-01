@@ -28,6 +28,7 @@ export default function MoviesTable() {
 
     useEffect(() => {
         fetchMovies();
+        newToast('bg-info', 'Click on the duration or Date or Status to edit the values')
     }, []);
 
     const fetchMovies = async () => {
@@ -91,6 +92,7 @@ export default function MoviesTable() {
             withCredentials: true
         }).then(response => {
             console.log(response);
+            newToast('bg-success','Updated successfully...');
             fetchMovies();
         })
         .catch(error => {
