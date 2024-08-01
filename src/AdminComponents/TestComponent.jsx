@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import MoviesTable from './TableComponents/MoviesTableComponent'
 import BookingsTable from './TableComponents/BookingsTableComponent'
 import ShowtimesTable from './TableComponents/ShowtimesTableComponent'
+import TheatresTable from './TableComponents/TheatresTableComponent'
 
 function TestComponent() {
   return (
@@ -10,7 +11,8 @@ function TestComponent() {
 
       {/* <BookingsTable/> */}
       {/* <MoviesTable/> */}
-      <ShowtimesTable/>
+      {/* <ShowtimesTable/> */}
+      <TheatresTable/>
     </div>
   )
 }
