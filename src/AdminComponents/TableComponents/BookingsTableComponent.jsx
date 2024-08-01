@@ -9,7 +9,8 @@ import axiosInstance from '../../utilities/axiosConfig';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import './TableStyles.css';
+import '../../styles/TableStyles.css'
+import '../../styles/styles.css';
 import NavBarComponent from '../../Components/HeaderComponents/NavBarComponent';
 
 export default function BookingsTable() {

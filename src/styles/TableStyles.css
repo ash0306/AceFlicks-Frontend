@@ -1,3 +1,6 @@
+#root{
+    background-color: #1f1f1f;
+}
 .search-bar {
     width: 15rem;
     border-radius: 4px;
@@ -7,8 +10,12 @@
     background-color: #FF725E;
 }
 
+.data-table{
+    background-color: #1f1f1f;
+}
+
 .bookings-table .p-datatable-tbody > tr:nth-child(odd) {
-    background-color: #ebeaea; /* Light gray for odd rows */
+    background-color: #ebeaea;
 }
 
 .bookings-table .p-datatable-tbody > tr:nth-child(even) {
