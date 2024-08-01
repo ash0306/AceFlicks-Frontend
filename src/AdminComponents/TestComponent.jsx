@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import MoviesTable from './MoviesTableComponent'
 
 function TestComponent() {
-  
   return (
     <div className='home-container'>
 

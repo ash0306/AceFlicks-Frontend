@@ -5,12 +5,34 @@ import { createTransform } from 'redux-persist';
 import authReducer from './AuthSlice';
 import { encryptData, decryptData } from './utilities/encryptionUtils';
 
+const sessionStorageWrapper = {
+  getItem: (key) => {
+    return new Promise((resolve) => {
+      resolve(sessionStorage.getItem(key));
+    });
+  },
+  setItem: (key, value) => {
+    return new Promise((resolve) => {
+      sessionStorage.setItem(key, value);
+      resolve();
+    });
+  },
+  removeItem: (key) => {
+    return new Promise((resolve) => {
+      sessionStorage.removeItem(key);
+      resolve();
+    });
+  },
+};
+
 // Define a custom transform for encrypting and decrypting the persisted state
 const encryptTransform = createTransform(
   (inboundState) => {
+    console.log("Encrypting state:", inboundState); // Log the state being encrypted
     return encryptData(inboundState);
   },
   (outboundState) => {
+    console.log("Decrypting state:", outboundState); // Log the state being decrypted
     return decryptData(outboundState);
   },
   { whitelist: ['auth'] }
@@ -18,7 +40,7 @@ const encryptTransform = createTransform(
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: sessionStorageWrapper,
   transforms: [encryptTransform],
 };
 

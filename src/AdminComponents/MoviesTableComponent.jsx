@@ -42,10 +42,6 @@ export default function MoviesTable() {
         setCurrentPage(event.page);
     };
 
-    const onRowClick = (movie) => {
-        console.log('Row clicked:', movie);
-    };
-
     const imageBodyTemplate = (movie) => {
         return <img src={movie.imageUrl} alt={movie.title} style={{height:'100px'}} className="w-6rem shadow-2 border-round" />;
     };
@@ -74,7 +70,6 @@ export default function MoviesTable() {
             <h1 className="text-xl text-900 font-bold">Movies</h1>
             <div className="flex align-items-center justify-content-end">
                 <span className="">
-                    {/* <i className="pi pi-search" /> */}
                     <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." className="search-bar" />
                 </span>
                 <Button icon="pi pi-plus" className="ms-2 color-bg border border-none rounded" label="Add Movie" />
@@ -100,7 +95,6 @@ export default function MoviesTable() {
         <div className='data-table home-container mx-4'>
             <NavBarComponent/>
             <DataTable
-                // value={loading ? Array(rowsPerPage).fill() : movies}
                 value={movies}
                 header={header}
                 footer={footer}
@@ -113,16 +107,6 @@ export default function MoviesTable() {
                 scrollHeight="calc(100vh - 100px)" 
                 onRowClick={(e) => onRowClick(e.data)}
             >
-                {/* <Column headerStyle={{backgroundColor: "#FF725E", color: "#1f1f1f" }} header="Image" body={imageBodyTemplate}></Column>
-                <Column headerStyle={{backgroundColor: "#FF725E", color: "#1f1f1f" }} field="title" header="Title" sortable filter ></Column>
-                <Column headerStyle={{backgroundColor: "#FF725E", color: "#1f1f1f" }} field="synopsis" header="Synopsis" sortable filter ></Column>
-                <Column headerStyle={{backgroundColor: "#FF725E", color: "#1f1f1f" }} field="genre" header="Genre" sortable filter></Column>
-                <Column headerStyle={{backgroundColor: "#FF725E", color: "#1f1f1f" }} field="language" header="Language" sortable filter></Column>
-                <Column headerStyle={{backgroundColor: "#FF725E", color: "#1f1f1f" }} field="duration" header="Duration (min)" sortable filter></Column>
-                <Column headerStyle={{backgroundColor: "#FF725E", color: "#1f1f1f" }} field="startDate" header="Start Date" body={(rowData) => dateBodyTemplate(rowData.startDate)} sortable filter></Column>
-                <Column headerStyle={{backgroundColor: "#FF725E", color: "#1f1f1f" }} field="endDate" header="End Date" body={(rowData) => dateBodyTemplate(rowData.endDate)} sortable filter></Column>
-                <Column headerStyle={{backgroundColor: "#FF725E", color: "#1f1f1f" }} header="Status" body={statusBodyTemplate} sortable filter></Column> */}
-
                 <Column headerStyle={{ backgroundColor: "#FF725E", color: "#1f1f1f" }} header="Image" body={loading ? skeletonTemplate : imageBodyTemplate}></Column>
                 <Column headerStyle={{ backgroundColor: "#FF725E", color: "#1f1f1f" }} field="title" header="Title" body={loading ? skeletonTemplate : undefined} sortable filter ></Column>
                 <Column headerStyle={{ backgroundColor: "#FF725E", color: "#1f1f1f" }} field="synopsis" header="Synopsis" body={loading ? skeletonTemplate : undefined} sortable filter ></Column>
@@ -134,7 +118,6 @@ export default function MoviesTable() {
                 <Column headerStyle={{ backgroundColor: "#FF725E", color: "#1f1f1f" }} header="Status" body={loading ? skeletonTemplate : statusBodyTemplate} sortable filter></Column>
             </DataTable>
             <Paginator
-                // style={{width: '80%', margin: 'auto'}}
                 first={currentPage * rowsPerPage}
                 rows={rowsPerPage}
                 totalRecords={totalRecords}
