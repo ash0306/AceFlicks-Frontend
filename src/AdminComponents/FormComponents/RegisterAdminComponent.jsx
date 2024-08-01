@@ -17,10 +17,7 @@ function RegisterAdminComponent() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [otp, setOtp] = useState("");
   const [validated, setValidated] = useState(false);
-  const [otpValidated, setOtpValidated] = useState(false);
-  const [isOTPDIVVisible, setIsOTPDIVVisible] = useState(false);
   const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [toastConfig, setToastConfig] = useState({
@@ -54,12 +51,13 @@ function RegisterAdminComponent() {
         email: email,
         password: password,
         phone: phone
+      },{
+        withCredentials: true,
       })
       .then(response => {
         if(response.status === 200) {
           setUserId(response.data.id);
-          newToast("bg-success", "Registration successful! Please verify your email to proceed");
-          setIsOTPDIVVisible(true);
+          newToast("bg-success", "Registration successful!");
         }
       })
       .catch(error => {

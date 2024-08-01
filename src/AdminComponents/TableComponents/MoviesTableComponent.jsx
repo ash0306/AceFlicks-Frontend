@@ -14,6 +14,7 @@ import '../../styles/TableStyles.css'
 import '../../styles/styles.css';
 import NavBarComponent from '../../Components/HeaderComponents/NavBarComponent';
 import ToastNotification from '../../Components/NotificationComponents/ToastNotification';
+import { Link } from 'react-router-dom';
 
 export default function MoviesTable() {
     const [movies, setMovies] = useState([]);
@@ -150,7 +151,7 @@ export default function MoviesTable() {
                 <span className="">
                     <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." className="search-bar" />
                 </span>
-                <Button icon="pi pi-plus" className="ms-2 color-bg border border-none rounded" id='color-btn' label="Add Movie" />
+                <Link to='/admin/add-movie'><Button icon="pi pi-plus" className="ms-2 color-bg border border-none rounded" id='color-btn' label="Add Movie"/></Link>
             </div>
         </div>
     );
