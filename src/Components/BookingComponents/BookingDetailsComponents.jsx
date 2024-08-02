@@ -130,20 +130,20 @@ function BookingDetailsComponents() {
         setTotalFee(calculatedTotalFee);
     }, [baseFee, convenienceFee, gst, totalFee]);
 
-    //useeffect for page refresh
-    // useEffect(() => {
-    //     const handleBeforeUnload = (event) => {
-    //         // event.preventDefault();
-    //         navigate('/');
-    //         setModalShow(true);
-    //     };
+    // useeffect for page refresh
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            event.preventDefault();
+            // navigate('/');
+            setModalShow(true);
+        };
 
-    //     window.addEventListener('beforeunload', handleBeforeUnload);
+        window.addEventListener('beforeunload', handleBeforeUnload);
 
-    //     return () => {
-    //     window.removeEventListener('beforeunload', handleBeforeUnload);
-    //     };
-    // }, []);
+        return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
 
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);

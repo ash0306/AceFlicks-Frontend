@@ -67,6 +67,12 @@ function BookingHistoryComponent() {
             });
     }
 
+    const isShowtimeInFuture = (showtime) => {
+        const [day, month, year] = showtime.replace('Show Start Time: ', '').split('-');
+        const showtimeDate = new Date(`${month}/${day}/${year}`);
+        return showtimeDate > new Date();
+    };
+
     return (
         <div className='home-container'>
             <NavBarComponent />
@@ -116,7 +122,7 @@ function BookingHistoryComponent() {
                                                         <li className="list-group-item"><strong>Show Start Time: </strong>{booking.showtimeDetails[0].replace('Show Start Time: ', '')}</li>
                                                         <li className="list-group-item"><strong>Total Price: </strong>Rs.{booking.totalPrice.toFixed(2)}</li>
                                                         <li className="list-group-item"><strong>Seats: </strong>{booking.seats.length > 0 ? booking.seats.join(', ') : 'None'}</li>
-                                                        {new Date(booking.showtimeDetails[0].replace('Show Start Time: ', '')) < new Date() && (
+                                                        {isShowtimeInFuture(booking.showtimeDetails[0]) && (
                                                             <button className='btn color-bg mt-2' id='color-btn' onClick={() => handleResendEmail(booking.id)}>
                                                                 {resendLoading[booking.id] ? (
                                                                     <div className="spinner-border spinner-border-sm" role="status">
