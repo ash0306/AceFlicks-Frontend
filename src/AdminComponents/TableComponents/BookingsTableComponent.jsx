@@ -59,7 +59,6 @@ export default function BookingsTable() {
                 <span className="">
                     <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." className="search-bar" />
                 </span>
-                <Button icon="pi pi-plus" id='color-btn' className="ms-2 color-bg border border-none rounded" label="Add Movie" />
             </div>
         </div>
     );

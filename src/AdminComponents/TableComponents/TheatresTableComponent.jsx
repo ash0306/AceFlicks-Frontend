@@ -11,6 +11,7 @@ import '../../styles/TableStyles.css'
 import '../../styles/styles.css';
 import NavBarComponent from '../../Components/HeaderComponents/NavBarComponent';
 import ToastNotification from '../../Components/NotificationComponents/ToastNotification';
+import { Link } from 'react-router-dom';
 
 export default function TheatresTable() {
     const [theatres, setTheatres] = useState([]);
@@ -55,8 +56,6 @@ export default function TheatresTable() {
 
     const updateTheatre = async (theatre) => {
         try {
-            console.log('Updating theatre');
-            // Use the passed-in oldLocation instead of finding it again
             const { oldLocation, location: newLocation, name } = theatre;
 
             if (oldLocation && oldLocation !== newLocation) {
@@ -116,7 +115,7 @@ export default function TheatresTable() {
                 <span className="">
                     <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." className="search-bar" />
                 </span>
-                <Button icon="pi pi-plus" className="ms-2 color-bg border border-none rounded" id='color-btn' label="Add Theatre" />
+                <Link to='/admin/add-theatre'><Button icon="pi pi-plus" className="ms-2 color-bg border border-none rounded" id='color-btn' label="Add Theatre" /></Link>
             </div>
         </div>
     );

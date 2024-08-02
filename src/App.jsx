@@ -25,15 +25,19 @@ import BookingsTable from './AdminComponents/TableComponents/BookingsTableCompon
 import RegisterAdminComponent from './AdminComponents/FormComponents/RegisterAdminComponent';
 import AddMovieComponent from './AdminComponents/FormComponents/AddMovieComponent';
 import AddShowtimeComponent from './AdminComponents/FormComponents/AddShowtimeComponent';
+import AddTheatreComponent from './AdminComponents/FormComponents/AddTheatreComponent';
 
 function App() {
 
   return (
       <Routes>
         <Route path='/' element={<HomepageComponent/>}/>
+        {/* Auth Routes */}
         <Route path='/login' element={<LoginComponent/>}/>
         <Route path='/register' element={<RegisterComponent/>}/>
         <Route path='/forgot-password' element={<ForgotPasswordComponent/>}/>
+        
+        {/* User Routes */}
         <Route path='/:type/:name/showtimes' element={<ShowtimeComponent/>}/>
         <Route path='/:movie/:theatre/:showtime/seats' element={<PrivateRoute component={SeatsComponent}/>}/>
         <Route path='/:movie/:theatre/:showtime/:seats/booking' element={<PrivateRoute component={BookingDetailsComponents}/>}/>
@@ -42,7 +46,7 @@ function App() {
         <Route path='/user/bookings' element={<PrivateRoute component={BookingHistoryComponent}/>}/>
         <Route path='/logout' element={<PrivateRoute component={LogoutComponent}/>}/>
 
-
+        {/* Admin Routes */}
         <Route path='/admin/dashboard' element={<PrivateRoute component={AdminDashboardComponents}/>}/>
         <Route path='/admin/movies' element={<PrivateRoute component={MoviesTable}/>}/>
         <Route path='/admin/showtimes' element={<PrivateRoute component={ShowtimesTable}/>}/>
@@ -51,8 +55,9 @@ function App() {
         <Route path='/admin/register-new' element={<PrivateRoute component={RegisterAdminComponent}/>}/>
         <Route path='/admin/add-movie' element={<PrivateRoute component={AddMovieComponent}/>}/>
         <Route path='/admin/add-showtime' element={<PrivateRoute component={AddShowtimeComponent}/>}/>
+        <Route path='/admin/add-theatre' element={<PrivateRoute component={AddTheatreComponent}/>}/>
 
-
+        {/* Dummy test route */}
         <Route path='/test' element={<TestComponent/>}/>
       </Routes>
   )
