@@ -19,7 +19,9 @@ function BookingDetailsComponents() {
     const [convenienceFee, setConvenienceFee] = useState(0);
     const [gst, setGst] = useState(0);
     const [totalFee, setTotalFee] = useState(0);
-    const [timeLeft, setTimeLeft] = useState(120);
+    const [timeLeft, setTimeLeft] = useState(120);    
+    const { userId } = useSelector((state) => state.auth);
+    const [bookingLoading, setBookingLoading] = useState(false);
     const [modalConfig, setModalConfig] = useState({
         show: false,
         title: '',
@@ -27,8 +29,6 @@ function BookingDetailsComponents() {
         imageSrc: '',
         redirectUrl: ''
     });
-    const { userId } = useSelector((state) => state.auth);
-    const [bookingLoading, setBookingLoading] = useState(false); // New state for booking loading
 
     const ReserveSeats = async (seats) => {
         await axiosInstance.post('/bookings/reserveSeats', seats, {
@@ -129,6 +129,21 @@ function BookingDetailsComponents() {
         const calculatedTotalFee = baseFee + convenienceFee + gst;
         setTotalFee(calculatedTotalFee);
     }, [baseFee, convenienceFee, gst, totalFee]);
+
+    //useeffect for page refresh
+    // useEffect(() => {
+    //     const handleBeforeUnload = (event) => {
+    //         // event.preventDefault();
+    //         navigate('/');
+    //         setModalShow(true);
+    //     };
+
+    //     window.addEventListener('beforeunload', handleBeforeUnload);
+
+    //     return () => {
+    //     window.removeEventListener('beforeunload', handleBeforeUnload);
+    //     };
+    // }, []);
 
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
