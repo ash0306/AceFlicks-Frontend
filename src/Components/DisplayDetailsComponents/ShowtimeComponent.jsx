@@ -51,7 +51,7 @@ function ShowtimesComponent() {
     return (
       <div className="home-container">
         <NavBarComponent/>
-        <div className="text-center spinner-border" role="status">
+        <div className="text-center spinner-border home-container" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>

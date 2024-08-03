@@ -16,7 +16,6 @@ import BookingConfirmationComponent from './Components/BookingComponents/Booking
 import ProfileComponent from './Components/UserComponents/ProfileComponent';
 import BookingHistoryComponent from './Components/UserComponents/BookingHistoryComponent';
 import LogoutComponent from './Components/AuthComponents/LogoutComponent';
-import TestComponent from './AdminComponents/TestComponent';
 import AdminDashboardComponents from './AdminComponents/AdminDashboardComponents';
 import MoviesTable from './AdminComponents/TableComponents/MoviesTableComponent';
 import ShowtimesTable from './AdminComponents/TableComponents/ShowtimesTableComponent';
@@ -56,9 +55,6 @@ function App() {
         <Route path='/admin/add-movie' element={<PrivateRoute component={AddMovieComponent}/>}/>
         <Route path='/admin/add-showtime' element={<PrivateRoute component={AddShowtimeComponent}/>}/>
         <Route path='/admin/add-theatre' element={<PrivateRoute component={AddTheatreComponent}/>}/>
-
-        {/* Dummy test route */}
-        <Route path='/test' element={<TestComponent/>}/>
       </Routes>
   )
 }

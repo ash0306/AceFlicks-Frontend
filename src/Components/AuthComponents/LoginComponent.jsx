@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useFormValidation from "../../utilities/useFormValidation";
 import '../../styles/styles.css';
 import axiosInstance from '../../utilities/axiosConfig';
@@ -15,6 +15,8 @@ import NavBarComponent from '../HeaderComponents/NavBarComponent';
 
 function LoginComponent() {
     useFormValidation();
+    const location = useLocation();
+    const showMessage = location.state || false;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [validated, setValidated] = useState(false);
@@ -29,9 +31,12 @@ function LoginComponent() {
     const { isAuthenticated, role } = useSelector((state) => state.auth);
 
     useEffect(() => {
+        if(showMessage){
+            newToast("bg-danger h1 fw-bold","Please login to continue using our services..")
+        }
         console.log('role: ' + role);
         if (isAuthenticated) {
-        navigate(role === 'Admin' ? '/test' : '/', { replace: true });
+            navigate(role === 'Admin' ? '/test' : '/', { replace: true });
         }
     }, [isAuthenticated, role, navigate]);
     

@@ -85,7 +85,7 @@ const ShowTheatreComponent = () => {
                 <p className='fs-5 mb-4'>Discover Your Favorite Theaters and the Best Showtimes</p>
                 <div className="d-flex overflow-auto theatre-section" style={{ whiteSpace: 'nowrap' }}>
                     {filteredTheatres.map((theatre, index) => (
-                        <div key={index} className="mx-3 border rounded border-white" style={{ display: 'inline-block', minWidth: '200px', cursor: 'pointer' }}>
+                        <div key={index} className="m-3 my-5 border rounded border-white" style={{ display: 'inline-block', minWidth: '200px', cursor: 'pointer' }}>
                             <div className="text-center mt-2" onClick={() => handleTheatreSelection(theatre.name)}>
                                 <h5>{theatre}</h5>
                             </div>
