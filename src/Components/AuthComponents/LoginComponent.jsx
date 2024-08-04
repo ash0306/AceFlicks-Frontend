@@ -58,7 +58,6 @@ function LoginComponent() {
             })
             .then(response => {
                 if (response.status === 200) {
-                    decodeAndSetToken(response.data.token);
                     newToast("bg-success", "Login successful! Redirecting....");
                     setTimeout(() => {
                         if(response.data.role == "User"){
@@ -67,7 +66,8 @@ function LoginComponent() {
                         else if(response.data.role == "Admin"){
                             navigate('/admin/dashboard');
                         }
-                    }, 5000);
+                        decodeAndSetToken(response.data.token);
+                    }, 3000);
                 }
             })
             .catch(error => {
