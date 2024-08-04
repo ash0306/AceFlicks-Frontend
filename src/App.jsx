@@ -25,6 +25,7 @@ import RegisterAdminComponent from './AdminComponents/FormComponents/RegisterAdm
 import AddMovieComponent from './AdminComponents/FormComponents/AddMovieComponent';
 import AddShowtimeComponent from './AdminComponents/FormComponents/AddShowtimeComponent';
 import AddTheatreComponent from './AdminComponents/FormComponents/AddTheatreComponent';
+import VerifyAccountComponent from './Components/AuthComponents/VerifyAccountComponent';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path='/login' element={<LoginComponent/>}/>
         <Route path='/register' element={<RegisterComponent/>}/>
         <Route path='/forgot-password' element={<ForgotPasswordComponent/>}/>
+        <Route path='/verify' element={<VerifyAccountComponent/>}/>
         
         {/* User Routes */}
         <Route path='/:type/:name/showtimes' element={<ShowtimeComponent/>}/>

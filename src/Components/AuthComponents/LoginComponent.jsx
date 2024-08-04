@@ -72,7 +72,7 @@ function LoginComponent() {
             })
             .catch(error => {
                 console.error(error);
-                newToast("bg-danger", "Login failed. Please check your email and password and try again.");
+                newToast("bg-danger", `Login failed. ${error.response.data.message}`);
             })
             .finally(() => {
                 setLoading(false);
@@ -169,6 +169,8 @@ function LoginComponent() {
                                     <div className="row m-3 text-center">
                                         <p className="m-0">New to AceTickets?</p>
                                         <p><Link to="/register" className="text-decoration-none">Register here</Link></p>
+                                        <p className="m-0">Account not verified?</p>
+                                        <p><Link to="/verify" className="text-decoration-none">Verify here</Link></p>
                                     </div>
                                 </form>
                             </div>
