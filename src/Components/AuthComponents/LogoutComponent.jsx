@@ -18,6 +18,9 @@ function LogoutComponent() {
                 console.log(response);
                 dispatch(logout());
                 setIsLoggedOut(true);
+                setTimeout(() =>{
+
+                },3000);
             })
             .catch((error) => {
                 console.error('Error logging out:', error);

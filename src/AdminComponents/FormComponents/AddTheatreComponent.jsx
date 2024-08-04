@@ -4,8 +4,6 @@ import useFormValidation from '../../utilities/useFormValidation';
 import NavBarComponent from '../../Components/HeaderComponents/NavBarComponent';
 import axiosInstance from '../../utilities/axiosConfig';
 import ToastNotification from '../../Components/NotificationComponents/ToastNotification';
-// import addTheatre from '../../assets/images/addTheatre.png';
-// import newTheatre from '../../assets/images/newTheatre.jpg';
 
 function AddTheatreComponent() {
     useFormValidation();

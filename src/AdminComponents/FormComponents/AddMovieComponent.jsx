@@ -119,9 +119,6 @@ function AddMovieComponent() {
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-10 container border rounded shadow-lg" id="card-form">
                         <div className="row d-flex">
-                            <div class="d-none d-md-block col-5 p-0">
-                                <img src={newMovie} className="img-fluid rounded-start" style={{height:'100%', width:'auto'}}></img>
-                            </div>
                             <div className="py-5 col-md-6 col-12">
                                 <div>
                                     <h1 className="text-center">ADD <span className='color-font'>MOVIE</span></h1>

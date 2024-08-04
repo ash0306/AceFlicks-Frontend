@@ -172,7 +172,8 @@ function BookingDetailsComponents() {
         await axiosInstance.post('/bookings', {
             "userId": userId,
             "showtimeId": showtimeDetails.id,
-            "seats": seats
+            "seats": seats,
+            "totalPrice": totalFee
         }, {
             withCredentials: true,
             timeout: 60000 // Set timeout to 60 seconds

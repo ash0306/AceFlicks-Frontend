@@ -36,7 +36,7 @@ function LoginComponent() {
         }
         console.log('role: ' + role);
         if (isAuthenticated) {
-            navigate(role === 'Admin' ? '/test' : '/', { replace: true });
+            navigate(role === 'Admin' ? '/admin/dashboard' : '/', { replace: true });
         }
     }, [isAuthenticated, role, navigate]);
     
@@ -67,7 +67,7 @@ function LoginComponent() {
                         else if(response.data.role == "Admin"){
                             navigate('/admin/dashboard');
                         }
-                    }, 3000);
+                    }, 5000);
                 }
             })
             .catch(error => {

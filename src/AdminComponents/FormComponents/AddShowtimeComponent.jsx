@@ -108,32 +108,6 @@ function AddShowtimeComponent() {
                                 </div>
                                 <form className="container needs-validation" noValidate validated={validated.toString()} onSubmit={handleSubmit}>
                                     <div className="row m-3">
-                                        <label htmlFor="startTime" className="form-label">Start Time</label>
-                                        <input
-                                            type="datetime-local"
-                                            className="form-control"
-                                            id="startTime"
-                                            required
-                                            value={startTime}
-                                            onChange={(e) => setStartTime(e.target.value)}
-                                        />
-                                        <div className="invalid-feedback">Please enter a start time.</div>
-                                        <div className="valid-feedback">Valid start time</div>
-                                    </div>
-                                    <div className="row m-3">
-                                        <label htmlFor="endTime" className="form-label">End Time</label>
-                                        <input
-                                            type="datetime-local"
-                                            className="form-control"
-                                            id="endTime"
-                                            required
-                                            value={endTime}
-                                            onChange={(e) => setEndTime(e.target.value)}
-                                        />
-                                        <div className="invalid-feedback">Please enter an end time.</div>
-                                        <div className="valid-feedback">Valid end time</div>
-                                    </div>
-                                    <div className="row m-3">
                                         <label htmlFor="movieId" className="form-label">Movie</label>
                                         <select
                                             className="form-control"
@@ -166,6 +140,32 @@ function AddShowtimeComponent() {
                                         </select>
                                         <div className="invalid-feedback">Please select a theatre.</div>
                                         <div className="valid-feedback">Valid theatre</div>
+                                    </div>
+                                    <div className="row m-3">
+                                        <label htmlFor="startTime" className="form-label">Start Time</label>
+                                        <input
+                                            type="datetime-local"
+                                            className="form-control"
+                                            id="startTime"
+                                            required
+                                            value={startTime}
+                                            onChange={(e) => setStartTime(e.target.value)}
+                                        />
+                                        <div className="invalid-feedback">Please enter a start time.</div>
+                                        <div className="valid-feedback">Valid start time</div>
+                                    </div>
+                                    <div className="row m-3">
+                                        <label htmlFor="endTime" className="form-label">End Time</label>
+                                        <input
+                                            type="datetime-local"
+                                            className="form-control"
+                                            id="endTime"
+                                            required
+                                            value={endTime}
+                                            onChange={(e) => setEndTime(e.target.value)}
+                                        />
+                                        <div className="invalid-feedback">Please enter an end time.</div>
+                                        <div className="valid-feedback">Valid end time</div>
                                     </div>
                                     <div className="row m-3">
                                         <label htmlFor="totalSeats" className="form-label">Total Seats</label>

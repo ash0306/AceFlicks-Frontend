@@ -104,6 +104,7 @@ function SeatsComponent() {
   if (!seats.length) {
     return (
       <div className="text-center mt-5 home-container">
+        <NavBarComponent/>
         <p>No seats available.</p>
       </div>
     );
