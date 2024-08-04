@@ -34,6 +34,7 @@ const ShowTheatreComponent = () => {
     }, [searchQuery, theatres]);
 
     const handleTheatreSelection = (name) => {
+        console.log(name);
         navigate(`/theatre/${name}/showtimes`);
     };
 
@@ -86,7 +87,7 @@ const ShowTheatreComponent = () => {
                 <div className="d-flex overflow-auto theatre-section" style={{ whiteSpace: 'nowrap' }}>
                     {filteredTheatres.map((theatre, index) => (
                         <div key={index} className="m-3 my-5 border rounded border-white" style={{ display: 'inline-block', minWidth: '200px', cursor: 'pointer' }}>
-                            <div className="text-center mt-2" onClick={() => handleTheatreSelection(theatre.name)}>
+                            <div className="text-center mt-2" onClick={() => handleTheatreSelection(theatre)}>
                                 <h5>{theatre}</h5>
                             </div>
                         </div>
