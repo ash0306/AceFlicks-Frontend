@@ -80,7 +80,7 @@ function RegisterComponent() {
       event.stopPropagation();
     } else {
       setIsLoading(true);
-      axiosInstance.post(`/auth/verify/verifyCode/${otp}?userId=${userId}`)
+      axiosInstance.post(`/auth/verify/verifyCode?userEmail=${email}&verificationCode=${otp}`)
       .then(response => {
         if(response.status === 200) {
           newToast("bg-success", "Verification successful! Redirecting...");
