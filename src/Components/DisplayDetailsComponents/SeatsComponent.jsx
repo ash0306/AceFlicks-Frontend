@@ -76,8 +76,6 @@ function SeatsComponent() {
       newToast('bg-danger', 'Please select at least one seat.');
       return;
     }
-    console.log(selectedSeats);
-    console.log(showtime);
     navigate(`/${showtime.movie}/${showtime.theatre}/${showtime.id}/${selectedSeats.length}/booking`, {state:{seats: selectedSeats, showtime: showtime}, replace: true})
   }
 

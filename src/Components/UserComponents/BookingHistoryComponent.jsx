@@ -36,7 +36,6 @@ function BookingHistoryComponent() {
                 const response = await axiosInstance.get(`/bookings/user/${userId}`, { withCredentials: true });
                 const sortedbookings = response.data.sort((a, b) => new Date(b.bookingTime) - new Date(a.bookingTime));
                 setBookings(sortedbookings);
-                // console.log(sortedbookings);
             } catch (error) {
                 console.error('Error fetching bookings:', error);
                 setError('Failed to fetch bookings');
@@ -55,7 +54,6 @@ function BookingHistoryComponent() {
             timeout: 60000,
         })
             .then(response => {
-                console.log(response);
                 newToast('bg-success', 'Email with booking details has been sent successfully!');
             })
             .catch(error => {

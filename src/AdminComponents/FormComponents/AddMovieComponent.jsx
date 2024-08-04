@@ -59,7 +59,6 @@ function AddMovieComponent() {
             imageUploaded = result.info.secure_url;
             setImageUrl(result.info.secure_url)
             setIsImageUploaded(true);
-            console.log(imageUrl);
             }
         }
     );
@@ -91,7 +90,6 @@ function AddMovieComponent() {
                 withCredentials: true,
             })
             .then(response => {
-                console.log(response);
                 newToast("bg-success", "Movie added successfully!");
             })
             .catch(error => {

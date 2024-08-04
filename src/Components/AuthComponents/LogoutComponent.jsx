@@ -15,7 +15,6 @@ function LogoutComponent() {
             await axiosInstance.post('/auth/logout',{},{
                 withCredentials: true,
             }).then((response) => {
-                console.log(response);
                 dispatch(logout());
                 setIsLoggedOut(true);
             })

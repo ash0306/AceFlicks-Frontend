@@ -19,7 +19,7 @@ function BookingDetailsComponents() {
     const [convenienceFee, setConvenienceFee] = useState(0);
     const [gst, setGst] = useState(0);
     const [totalFee, setTotalFee] = useState(0);
-    const [timeLeft, setTimeLeft] = useState(120);    
+    const [timeLeft, setTimeLeft] = useState(300);    
     const { userId } = useSelector((state) => state.auth);
     const [bookingLoading, setBookingLoading] = useState(false);
     const [modalConfig, setModalConfig] = useState({
@@ -35,7 +35,6 @@ function BookingDetailsComponents() {
             withCredentials: true,
         })
             .then(response => {
-                console.log(response);
             })
             .catch(error => {
                 console.error('Error reserving seats:', error);
@@ -49,7 +48,6 @@ function BookingDetailsComponents() {
             withCredentials: true,
         })
             .then(response => {
-                console.log(response);
             })
             .catch(error => {
                 console.error('Error freeing seats:', error);
@@ -90,8 +88,6 @@ function BookingDetailsComponents() {
 
     // UseEffect to get showtime details
     useEffect(() => {
-        console.log("showtime:" + JSON.stringify(showtime));
-        console.log("seat:" + seats);
         const fetchData = async (showtime) => {
             await axiosInstance.get(`/showtimes/${showtime.id}`, {
                 withCredentials: true,
@@ -157,7 +153,6 @@ function BookingDetailsComponents() {
     };
 
     const newModal = (title, message, imageSrc, redirectUrl) => {
-        console.log("showing modal...");
         setModalConfig({
             show: true,
             title,
@@ -179,7 +174,6 @@ function BookingDetailsComponents() {
             timeout: 60000 // Set timeout to 60 seconds
         })
             .then(response => {
-                console.log(response);
                 navigate('/booking-confirmation', { state: { bookingDetails: response.data, showtime: showtime }, replace: true });
             })
             .catch(error => {

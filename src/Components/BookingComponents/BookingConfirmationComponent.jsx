@@ -19,9 +19,6 @@ function BookingConfirmationComponent() {
             setMessage(bookingDetails.offerMessage);
             setShow(true);
         }
-
-        console.log("confirm showtime - " + showtime);
-        console.log("confirm bookingDetails - " + bookingDetails);
     }, [bookingDetails, showtime, navigate]);
 
     const handleClose = () => setShow(false);

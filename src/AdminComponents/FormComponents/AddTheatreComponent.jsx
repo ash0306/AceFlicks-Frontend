@@ -45,7 +45,6 @@ function AddTheatreComponent() {
                 withCredentials: true,
             })
             .then(response => {
-                console.log(response);
                 newToast("bg-success", "Theatre added successfully!");
                 setTimeout(() => {
                     navigate('/admin/theatres');

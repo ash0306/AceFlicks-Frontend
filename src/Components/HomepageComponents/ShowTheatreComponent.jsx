@@ -34,7 +34,6 @@ const ShowTheatreComponent = () => {
     }, [searchQuery, theatres]);
 
     const handleTheatreSelection = (name) => {
-        console.log(name);
         navigate(`/theatre/${name}/showtimes`);
     };
 

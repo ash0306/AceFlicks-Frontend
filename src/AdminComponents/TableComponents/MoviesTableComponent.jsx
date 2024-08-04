@@ -37,7 +37,6 @@ export default function MoviesTable() {
         setLoading(true);
         try {
             const response = await axiosInstance.get(`/movies`, { withCredentials: true });
-            console.log(response.data);
             setMovies(response.data);
             setTotalRecords(response.data.length);
         } catch (error) {
@@ -83,7 +82,6 @@ export default function MoviesTable() {
     };
 
     const updateMovie = async (title, duration, startDate, endDate, status) => {
-        console.log('inside updatemovie')
         await axiosInstance.put('/movies', {
             title: title,
             duration: duration,
@@ -93,7 +91,6 @@ export default function MoviesTable() {
         }, {
             withCredentials: true
         }).then(response => {
-            console.log(response);
             newToast('bg-success','Updated successfully...');
             fetchMovies();
         })
@@ -119,7 +116,6 @@ export default function MoviesTable() {
         rowData[field] = newValue;
 
         try {
-            console.log('insisde try')
             await updateMovie(rowData.title, rowData.duration, rowData.startDate, rowData.endDate, rowData.status);
         } catch (error) {
             console.error("Error updating movie:", error);

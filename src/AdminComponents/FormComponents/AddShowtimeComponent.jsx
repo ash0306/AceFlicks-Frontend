@@ -82,7 +82,6 @@ function AddShowtimeComponent() {
                 withCredentials: true,
             })
                 .then(response => {
-                    console.log(response);
                     newToast("bg-success", "Showtime added successfully!");
                 })
                 .catch(error => {

@@ -28,11 +28,9 @@ const sessionStorageWrapper = {
 // Define a custom transform for encrypting and decrypting the persisted state
 const encryptTransform = createTransform(
   (inboundState) => {
-    console.log("Encrypting state:", inboundState); // Log the state being encrypted
     return encryptData(inboundState);
   },
   (outboundState) => {
-    console.log("Decrypting state:", outboundState); // Log the state being decrypted
     return decryptData(outboundState);
   },
   { whitelist: ['auth'] }

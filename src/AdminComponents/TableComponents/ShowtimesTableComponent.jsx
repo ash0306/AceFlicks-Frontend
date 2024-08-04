@@ -69,7 +69,6 @@ export default function ShowtimesTable() {
         }, { 
             withCredentials: true 
         }).then(response => {
-            console.log(response);
             newToast('bg-success', 'Showtime updated successfully!');
             fetchShowtimes();
             return true;

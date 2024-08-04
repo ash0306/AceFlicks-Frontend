@@ -34,7 +34,6 @@ function LoginComponent() {
         if(showMessage){
             newToast("bg-danger h1 fw-bold","Please login to continue using our services..")
         }
-        console.log('role: ' + role);
         if (isAuthenticated) {
             navigate(role === 'Admin' ? '/admin/dashboard' : '/', { replace: true });
         }
