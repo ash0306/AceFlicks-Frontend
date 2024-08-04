@@ -111,6 +111,11 @@ export default function MoviesTable() {
             return;
         }
 
+        if(rowData[field] == newValue){
+            newToast('bg-warning', 'No changes detected!');
+            return;
+        }
+
         rowData[field] = newValue;
 
         try {

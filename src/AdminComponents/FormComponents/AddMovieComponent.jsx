@@ -71,7 +71,8 @@ function AddMovieComponent() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const form = event.currentTarget;
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() === false || new Date(startTime) >= new Date(endTime)) {
+            newToast("bg-danger", "Invalid form data or start time must be before end time! Please check your data and try again");
             event.preventDefault();
             event.stopPropagation();
         } else {

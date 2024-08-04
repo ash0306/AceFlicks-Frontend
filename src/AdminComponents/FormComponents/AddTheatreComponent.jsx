@@ -33,6 +33,7 @@ function AddTheatreComponent() {
         event.preventDefault();
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
+            newToast("bg-danger", "Invalid form data! Please check your data and try again");
             event.preventDefault();
             event.stopPropagation();
         } else {
