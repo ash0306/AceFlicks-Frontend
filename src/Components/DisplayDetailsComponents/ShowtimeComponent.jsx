@@ -72,6 +72,7 @@ function ShowtimesComponent() {
               className={`btn btn-secondary mx-1 ${isSameDay(date, selectedDate) ? 'active' : ''}`}
               onClick={() => setSelectedDate(date)}
               id='color-btn'
+              style={{ backgroundColor: isSameDay(date, selectedDate) ? '#FF452B' : '' }}
             >
               {date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
             </button>
